@@ -7,7 +7,7 @@ const SliderComponent = () => {
   return (
     <div className=" min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-25 mx-5 mt-15">
        <div className="  w-full md:w-2/3 p-3">
-      <img src="image_slider/image_slider_5.png" alt="img"   />
+      <img src="image_slider/image_slider_5.png" alt="img"    />
     </div>
     <div className=" md:w-2/4 text-center">
       <h2 className=" text-5xl font-semibold leading-tight">
@@ -23,7 +23,7 @@ const SliderComponent = () => {
 
       <Link to={"/contact"} spy={true} smooth={true} duration={500}>
         
-        <button className=" bg-white py-2 px-5 rounded-full mt-4 outline hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-brightGreen hover:text-blue-500 transition-all">
+        <button className=" bg-white py-2 px-5 rounded-full mt-4 outline hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-brightGreen transition-all">
         Contact Us
       </button>
       </Link>

@@ -12,6 +12,7 @@ function App() {
     <Navbar />
     <main>
     <SliderComponent />
+   
     </main>
    
 

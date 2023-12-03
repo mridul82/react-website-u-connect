@@ -12,3 +12,7 @@ body{
     color: #000000;
     font-family: 'Inter', sans-serif;
 }
+
+.no-underline {
+    text-decoration: none;
+  }
