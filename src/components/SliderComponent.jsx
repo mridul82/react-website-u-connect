@@ -5,14 +5,14 @@ const SliderComponent = () => {
 
   return (
     <div className=" min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-25 mx-5 mt-15">
-       <div className="  w-full md:w-2/3 p-3">
-      <img src="image_slider/image_slider_5.png" alt="img" style={{ maxHeight: '500px', width: '100%', height: 'auto' }}  />
+       <div className="  w-full md:w-2/3 p-3 m-5">
+      <img src="image_slider/image_slider_5.png" alt="img" style={{ maxHeight: '500px', width: '90%', height: 'auto' }}  />
     </div>
     <div className=" md:w-2/4 text-center">
-      <h2 className=" text-5xl font-semibold leading-tight">
-        Knowledge with
-        <span className="text-brightGreen"> uConnect</span>
-      </h2>
+      <h4 className=" text-5xl font-semibold leading-tight">
+      Empowering minds, illuminating futures </h4>
+        <span className="text-brightGreen font-semibold"> "Join Urja Connect for a boundless journey of learning and growth!"</span>
+      
       <p className=" text-lightText mt-5 text-start">
       uConnect is your gateway to a world of limitless learning possibilities.
         With our cutting-edge eLearning platform, you can search your best curated tutor, a vast
@@ -32,7 +32,7 @@ const SliderComponent = () => {
   />
   <button
     type="submit"
-    className="bg-white py-2 px-5 rounded-full outline hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-brightGreen transition-all"
+    className=" py-2 px-5 rounded-full outline transition-all hover:bg-[#539165] hover:text-white hover:shadow-lg"
   >
     Search
   </button>
