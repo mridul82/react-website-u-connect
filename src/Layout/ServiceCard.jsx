@@ -2,20 +2,21 @@ import React from 'react'
 
 const ServiceCard = (props) => {
   return (
-    <div className=" w-full md:w-1/3 bg-white border-2 border-lightText md:border-none p-5 rounded-lg hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all">
-      <div>
-        <p className=" text-lightText">
-            <h2 className=' font-bold'>Find Tutor</h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-          consectetur error, dolores quae ipsa quos enim corporis magni
-          obcaecati tempore natus eos, libero ducimus nulla neque eaque maxime
-          nam molestias?
-        </p>
-      </div>
-
+    <div className=" group flex flex-col items-center text-center gap-2 w-full lg:w-1/3 p-5 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg cursor-pointer lg:hover:-translate-y-6 transition duration-300 ease-in-out">
+      <div className=" bg-[#d5f2ec] p-3 rounded-full transition-colors duration-300 ease-in-out group-hover:bg-[#ade9dc]">
       <div className=" flex flex-row justify-center">
         <img className=" rounded-full w-1/4" src={props.img} alt="img" />
       </div>
+      </div>
+      <h1 className=" font-semibold text-lg">{props.title}</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+        praesentium asperiores unde veniam, perspiciatis neque!
+      </p>
+
+      <h3 className=" text-backgroundColor cursor-pointer hover:text-[#ade9dc] transition duration-300 ease-in-out">
+        Learn more
+      </h3>
     </div>
   )
 }

@@ -81,7 +81,7 @@ const Navbar = () => {
             duration={500}
             className="hover:text-[#539165] transition-all cursor-pointer"
           >
-            Courses
+            Services
           </Link>
           <Link
             style={{ textDecoration: "none" }}
@@ -91,7 +91,7 @@ const Navbar = () => {
             duration={500}
             className="hover:text-[#539165] transition-all cursor-pointer"
           >
-            Reviews
+            Teachers
           </Link>
           <Link
             to="contact"
@@ -142,7 +142,7 @@ const Navbar = () => {
           duration={500}
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
-          Courses
+          Services
         </Link>
 
         <Link

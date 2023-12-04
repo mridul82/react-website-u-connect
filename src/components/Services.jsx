@@ -8,9 +8,9 @@ const Services = () => {
       <Heading title1="Our" title2="Services" />
 
       <div className=" flex flex-col md:flex-row gap-5 mt-5">
-        <ServiceCard img="icons/icons8-teacher-100.png" />
-        <ServiceCard img="icons/icons8-exam-64.png" />
-        <ServiceCard img="icons/icons8-social-studies-100.png" />
+        <ServiceCard img="icons/icons8-teacher-100.png" title="Find Tutor" />
+        <ServiceCard img="icons/icons8-exam-64.png" title="Mock Test" />
+        <ServiceCard img="icons/icons8-social-studies-100.png" title="Study Material" />
       </div>
     </div>
   )
