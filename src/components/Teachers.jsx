@@ -4,7 +4,7 @@ import TeacherCard from '../Layout/TeacherCard'
 
 const Teachers = () => {
   return (
-    <div className=" min-h-screen flex flex-col items-center md:px-3 px-2 ">
+    <div className=" min-h-screen flex flex-col items-center md:px-3 px-5 ">
       <Heading title1="Our" title2="Teacher" />
 
       <div className=" flex flex-wrap justify-center mt-6">
