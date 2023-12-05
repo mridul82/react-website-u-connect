@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DropDown from "../Layout/DropDown";
 
 const Navbar = () => {
   const location = useLocation();
   const [menu, setMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+
+  const token = localStorage.getItem('accessToken');
+  const User = JSON.parse(localStorage.getItem('user'));
+  //console.log(user);
+  
+  const navigate = useNavigate(); // For navigation in React Router v6
 
   const handleChange = () => {
     setMenu(!menu);
@@ -16,6 +23,14 @@ const Navbar = () => {
 
   const isActive = (path) => {
     return location.pathname === `/${path}` ? "text-[#539165]" : "";
+  };
+
+  const handleLogout = () => {
+    // Clear the access token from localStorage upon logout
+    localStorage.removeItem('accessToken');
+
+    // Redirect to the login page after logout
+    navigate('/');
   };
 
   useEffect(() => {
@@ -108,11 +123,18 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Link to={"/login"}>
+          {token ? (
+          <DropDown user={User} />
+          
+          ) :(
+        <Link to={"/login"}>
             <button class=" py-1 px-4 rounded-full outline transition-all hover:bg-[#539165] hover:text-white hover:shadow-md">
               Login
             </button>
           </Link>
+
+          )}
+          
         </nav>
 
         <div className="flex md:hidden" onClick={handleChange}>

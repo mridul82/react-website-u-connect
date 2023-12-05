@@ -22,6 +22,7 @@ const TeacherCard = (props) => {
         className=" h-64 md:h-96 lg:h-40 w-full rounded-lg"
         src={props.img}
         alt="img"
+        loading="lazy"
       />
       <h2 className=" text-lg text-center font-semibold">{props.title}</h2>
       <p className=" text-center text-sm">

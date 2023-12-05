@@ -11,6 +11,7 @@ import Login from './components/Login/Login.jsx';
 import SignUp from './components/Login/SignUp.jsx';
 import About from './components/Pages/About.jsx';
 import Contact from './components/Pages/Contact.jsx';
+import Profile from './components/Pages/Profile.jsx';
 import Service from './components/Pages/Service.jsx';
 import Tutors from './components/Pages/Tutors.jsx';
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: '/contact',
     element: <Contact />
+  },
+  {
+path: '/profile',
+element: <Profile />
   },
   {
     path: '/signup',

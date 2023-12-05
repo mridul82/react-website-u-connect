@@ -6,7 +6,7 @@ const SliderComponent = () => {
   return (
     <div className=" min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-25 mx-5 ">
        <div className="  w-full md:w-2/3 p-3 m-5">
-      <img src="image_slider/image_slider_5.png" alt="img" style={{ maxHeight: '500px', width: '90%', height: 'auto' }}  />
+      <img src="image_slider/image_slider_5.png" alt="img" style={{ maxHeight: '500px', width: '90%', height: 'auto' }}  loading="lazy" />
     </div>
     <div className=" md:w-2/4 text-center">
       <h4 className=" text-5xl font-semibold leading-tight">

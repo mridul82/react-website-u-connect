@@ -1,9 +1,14 @@
 import React from 'react'
+import Loader from '../../Layout/Loader'
 import Navbar from '../NavBar'
 
 const Service = () => {
   return (
-    <Navbar />
+    <>
+       <Navbar />
+    <Loader />
+    </>
+ 
   )
 }
 
