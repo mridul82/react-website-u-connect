@@ -63,7 +63,7 @@ const Navbar = () => {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to="about"
+            to={"/about"}
             spy={true}
             smooth={true}
             duration={500}
@@ -75,30 +75,36 @@ const Navbar = () => {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to="courses"
+            to={"/service"}
             spy={true}
             smooth={true}
             duration={500}
-            className="hover:text-[#539165] transition-all cursor-pointer"
+            className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
+              "service"
+            )}`}
           >
             Services
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            to="reviews"
+            to={"/tutors"}
             spy={true}
             smooth={true}
             duration={500}
-            className="hover:text-[#539165] transition-all cursor-pointer"
+            className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
+              "tutors"
+            )}`}
           >
             Teachers
           </Link>
           <Link
-            to="contact"
+            to={"/contact"}
             spy={true}
             smooth={true}
             duration={500}
-            className="hover:text-[#539165] transition-all cursor-pointer"
+            className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
+              "contact"
+            )}`}
           >
             Contact
           </Link>
@@ -124,33 +130,33 @@ const Navbar = () => {
         <Link
           to={"/"}
           duration={500}
-          className="hover:text-[#539165] transition-all cursor-pointer"
+          className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
           Home
         </Link>
         <Link
           to={"/about"}
           duration={500}
-          className="hover:text-[#539165] transition-all cursor-pointer"
+          className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
           About
         </Link>
         <Link
-          to="courses"
+          to={"/services"}
           spy={true}
           smooth={true}
           duration={500}
-          className="hover:text-[#539165] transition-all cursor-pointer"
+          className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
           Services
         </Link>
 
         <Link
-          to="contact"
+          to={"/contact"}
           spy={true}
           smooth={true}
           duration={500}
-          className="hover:text-[#539165] transition-all cursor-pointer"
+          className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
           Contact
         </Link>
