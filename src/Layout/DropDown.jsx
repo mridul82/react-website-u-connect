@@ -33,7 +33,7 @@ const DropDown = (props) => {
 
   
     return (
-      <div className="relative inline-block text-left" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(true)}>
+      <div className="relative inline-block text-left" onMouseEnter={() => setIsOpen(true)} >
         <button className="hover:text-white md:hover:text-[#539165] transition-all cursor-pointer focus:outline-none" 
        onClick={() => setIsOpen(!isOpen)}
         >
