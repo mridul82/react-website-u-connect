@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../NavBar';
 
+import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { config_header } from '../Login/constants/apiHeader';
 
 const Tutors = () => {
   const [loading, setLoading] = useState(true);
+  const [profileData, setProfileData] = useState(null);
 
   const navigate = useNavigate(); // For navigation in React Router v6
   const location = useLocation();
@@ -13,13 +16,16 @@ const Tutors = () => {
   const userData = location.state && location.state.userData;
   //console.log(userData);
 
-  useEffect(() => {
-    // Simulating an API call delay (remove this in your actual code)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  useEffect(() => {    
 
-    return () => clearTimeout(timer);
+    const getProfile = async() => {
+      const response = await axios.get('http://localhost:8000/api/teacher-profile', config_header)
+      if(response.status === 200){
+        console.log(response.data);
+        setProfileData(response.data);
+      }
+    }
+   getProfile()
   }, []);
 
   const handleLogout = () => {
@@ -37,13 +43,22 @@ const Tutors = () => {
 
        <div>
       <h1>Welcome to Dashboard</h1>
-      {userData && (
-        <div>
-          <p>User ID: {userData.user.id}</p>
-          <p>Name: {userData.user.name}</p>
-          <p>Email: {userData.user.email}</p>
-          {/* Display other user information as needed */}
-        </div>
+      {profileData && (
+     
+      <div className="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="flex justify-center p-6">
+        <img
+          src={profileData.imageUrl}
+          alt="Profile"
+          className="rounded-full h-32 w-32 object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <h2 className="text-3xl font-bold mb-4">{profileData.profile.teacher['name']}</h2>
+        <p className="text-lg text-gray-700 mb-4">Phone: {profileData.profile.whatapp_no}</p>
+        <p className="text-lg text-gray-700 mb-4">Locality: {profileData.profile.area_locality}</p>
+      </div>
+    </div>
       )}
       <button onClick={handleLogout}>Logout</button>
     </div>

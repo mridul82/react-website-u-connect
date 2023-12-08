@@ -56,9 +56,9 @@ const Profile = () => {
       
       if(response.status === 200) {
         console.log(response.data);
-        if (formRef.current) {
+        
           formRef.current.reset();
-        }
+        
       }
       
 
