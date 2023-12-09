@@ -11,6 +11,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword ] = useState('');
 
+  const [selectedButton, setSelectedButton] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -22,6 +24,9 @@ const Login = () => {
 //     setActiveTab(tab);
 //     // Implement logic to change content based on the selected tab
 //   };
+const handleButtonClick = (buttonType) => {
+  setSelectedButton(buttonType);
+};
 
 const handleEmailChange = (e) => {
   setEmail(e.target.value);
@@ -35,7 +40,9 @@ const handlePasswordChange = (e) => {
       e.preventDefault();
       setLoading(true);
       try {
-        const response = await axios.post('http://localhost:8000/api/teacher-login', {
+
+        const apiUrl = selectedButton === 'student' ? 'http://localhost:8000/api/student-profile' : 'http://localhost:8000/api/teacher-profile';
+        const response = await axios.post(apiUrl, {
           email, 
           password
         });
@@ -47,6 +54,7 @@ const handlePasswordChange = (e) => {
         const accessToken = response.data.access_token;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('userType', selectedButton);
 
         
           navigate('/tutors', {state: {userData: response.data}});
@@ -108,7 +116,12 @@ const handlePasswordChange = (e) => {
                     <h1 >Select type of account</h1>
 
                     <div className="mt-3 md:flex md:items-center md:-mx-2">
-                        <button className="flex justify-center w-full px-6 py-3 text-white bg-red-400 rounded-lg md:w-auto md:mx-2 focus:outline-none">
+                        <button className={`flex justify-center w-full px-6 py-3 border
+                          border-red-500 rounded-lg md:w-auto md:mx-2 focus:outline-none
+                         ${selectedButton === 'teachers' ? 'bg-red-600 text-white' : 'bg-white text-red-500'}
+                         `}
+                         
+                         onClick={() => handleButtonClick('teachers') }>
                             
 
                             <span className="mx-2">
@@ -116,7 +129,11 @@ const handlePasswordChange = (e) => {
                             </span>
                         </button>
 
-                        <button className="flex justify-center w-full px-6 py-3 mt-4 text-red-500 border border-red-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-red-400 dark:text-red-400 focus:outline-none">
+                        <button className={`flex justify-center w-full px-6 py-3 mt-4 text-red-500 border
+                         border-red-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-red-400 dark:text-red-400 focus:outline-none
+                         ${selectedButton === 'students' ? 'bg-red-600 text-white' : 'bg-white text-red-400'}`}
+                         onClick={() => handleButtonClick('students')}
+                         >
                            
                             <span className="mx-2">
                                 Students/Parents
