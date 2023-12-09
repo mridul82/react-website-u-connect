@@ -41,7 +41,7 @@ const handlePasswordChange = (e) => {
         });
 
         if(response.status === 200) {
-          console.log(response.data);
+         // console.log(response.data);
 
           // Store the access token in localStorage
         const accessToken = response.data.access_token;

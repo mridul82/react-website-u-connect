@@ -75,7 +75,7 @@ const Profile = () => {
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="-mx-3 md:flex mb-6">
           <div className="md:w-1/3 px-3 mb-6 md:mb-0">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
+            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="company">
               Name*
             </label>
             <input className="w-full bg-gray-200 text-black border
@@ -87,14 +87,14 @@ const Profile = () => {
             </div>
           </div>
           <div className="md:w-1/3 px-3">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="title">
               What App Number*
             </label>
             <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
             id="title" type="text" placeholder="What App Number" value={number} onChange={(e) => setNumber(e.target.value)}  />
           </div>
           <div className="md:w-1/3 px-3">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="title">
               Gender*
             </label>
             <select className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" 

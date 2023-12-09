@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import Navbar from '../NavBar'
+import Footer from '../Footer';
+import Navbar from '../NavBar';
 
 import {
+  faEnvelope,
   faHandshake,
-  faPhone,
-  faEnvelope
-  
+  faPhone
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -129,7 +129,7 @@ const Contact = () => {
                                             w-full p-2.5" 
                                 rows="4" 
                                 cols="25" 
-                                maxlength="300" 
+                                maxLength="300" 
                                 placeholder="Max Allowed Characters: 300"> 
                     </textarea> 
                     <br></br> 
@@ -154,7 +154,7 @@ const Contact = () => {
     </div>
       
     </div>
-       
+    <Footer />
     </div>
   )
 }

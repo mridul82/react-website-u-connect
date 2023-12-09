@@ -18,5 +18,5 @@
   
 
 
-export { config, config_header };
+export { config, config_header, token };
 

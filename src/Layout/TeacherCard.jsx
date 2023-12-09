@@ -18,12 +18,15 @@ const TeacherCard = (props) => {
     // </div>
 
     <div className=" w-full lg:w-1/4 p-2 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] space-y-2 rounded-lg cursor-pointer hover:scale-105 transition duration-300 ease-in-out">
+      <div className='flex items-center justify-center'>
       <img
-        className=" h-64 md:h-96 lg:h-40 w-full rounded-lg"
+        className="h-64 md:h-96 lg:h-40 w-64 md:w-96 lg:w-40 rounded-full object-cover"
         src={props.img}
         alt="img"
         loading="lazy"
       />
+      </div>
+      
       <h2 className=" text-lg text-center font-semibold">{props.title}</h2>
       <p className=" text-center text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,

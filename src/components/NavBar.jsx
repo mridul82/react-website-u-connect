@@ -28,6 +28,7 @@ const Navbar = () => {
   const handleLogout = () => {
     // Clear the access token from localStorage upon logout
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
 
     // Redirect to the login page after logout
     navigate('/');
@@ -79,8 +80,7 @@ const Navbar = () => {
           <Link
             style={{ textDecoration: "none" }}
             to={"/about"}
-            spy={true}
-            smooth={true}
+           
             duration={500}
             className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
               "about"
@@ -91,9 +91,8 @@ const Navbar = () => {
           <Link
             style={{ textDecoration: "none" }}
             to={"/service"}
-            spy={true}
-            smooth={true}
-            duration={500}
+          
+        
             className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
               "service"
             )}`}
@@ -103,8 +102,7 @@ const Navbar = () => {
           <Link
             style={{ textDecoration: "none" }}
             to={"/tutors"}
-            spy={true}
-            smooth={true}
+            
             duration={500}
             className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
               "tutors"
@@ -114,8 +112,7 @@ const Navbar = () => {
           </Link>
           <Link
             to={"/contact"}
-            spy={true}
-            smooth={true}
+           
             duration={500}
             className={`hover:text-[#539165] transition-all cursor-pointer ${isActive(
               "contact"
@@ -165,8 +162,7 @@ const Navbar = () => {
         </Link>
         <Link
           to={"/services"}
-          spy={true}
-          smooth={true}
+        
           duration={500}
           className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
@@ -175,8 +171,7 @@ const Navbar = () => {
 
         <Link
           to={"/contact"}
-          spy={true}
-          smooth={true}
+        
           duration={500}
           className="hover:text-[#539165] hover:bg-white transition-all cursor-pointer"
         >
