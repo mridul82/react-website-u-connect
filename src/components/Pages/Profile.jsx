@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Navbar from '../NavBar';
 
 const Profile = () => {
+
+  const navigate = useNavigate();
+  
   const [number, setNumber] = useState('');
   const [selectedGender, setSelectedGender] = useState('M');
   const [address, setAddress] = useState('');
@@ -57,7 +61,8 @@ const Profile = () => {
       if(response.status === 200) {
         console.log(response.data);
         
-          formRef.current.reset();
+        formRef.current.reset();
+        navigate('/tutors');
         
       }
       
@@ -102,6 +107,7 @@ const Profile = () => {
             value={selectedGender}
             onChange={(e) => setSelectedGender(e.target.value)}
             >
+              <option value="">Select Option</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
                 <option value="O">Others</option>
@@ -191,6 +197,7 @@ const Profile = () => {
               id="preferredSubject"
               value={preferredSubject} onChange={(e) => setPreferredSubject(e.target.value)}
               >
+                <option value="">Select an Option</option>
                 <option value="Maths">Maths</option>
                 <option value="English">English</option>
                 <option value="Science">Science</option>

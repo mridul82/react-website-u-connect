@@ -41,7 +41,8 @@ const handlePasswordChange = (e) => {
       setLoading(true);
       try {
 
-        const apiUrl = selectedButton === 'student' ? 'http://localhost:8000/api/student-profile' : 'http://localhost:8000/api/teacher-profile';
+        const apiUrl = selectedButton === 'students' ? 'http://localhost:8000/api/student-login' : 'http://localhost:8000/api/teacher-login';
+        console.log(apiUrl);
         const response = await axios.post(apiUrl, {
           email, 
           password
