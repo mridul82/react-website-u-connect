@@ -29,6 +29,7 @@ const Navbar = () => {
     // Clear the access token from localStorage upon logout
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
+    localStorage.removeItem('userType');
 
     // Redirect to the login page after logout
     navigate('/');
