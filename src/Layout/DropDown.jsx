@@ -3,16 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const DropDown = (props) => {
+  //console.log(props.user);
+  const userType = props.user.user_type;
+  
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Clear the access token from localStorage upon logout
-        localStorage.removeItem('accessToken');
-    
-        // Redirect to the login page after logout
-        navigate('/');
-      };
+      // Clear the access token from localStorage upon logout
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
+      localStorage.removeItem('userType');
+      localStorage.removeItem('isProfileComplete');
+  
+      // Redirect to the login page after logout
+      navigate('/');
+    };
    
   
     // Close the dropdown when clicked outside
@@ -41,9 +47,33 @@ const DropDown = (props) => {
         </button>
         {isOpen && (
           <div className="absolute right-0 mt-2 w-60 bg-white rounded shadow-lg py-2 ">
-            <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            {
+  userType === 'students' && (
+    <>
+      <Link to="/student-profile-view" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+        View Profile
+      </Link>
+      <Link to="/add-student-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+        Add Profile
+      </Link>
+    </>
+  )
+ }
+ {
+   userType === 'teachers' && (
+    <>
+      <Link to="/tutor-profile-view" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+        View Profile
+      </Link>
+      <Link to="/add-tutor-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+        Add Profile
+      </Link>
+    </>
+  )
+ }
+            {/* <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
               Profile
-            </Link>
+            </Link> */}
             <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200" onClick={handleLogout}>
               Logout
             </button>

@@ -47,7 +47,7 @@ const handlePasswordChange = (e) => {
     : selectedButton === 'teachers'
     ? 'http://localhost:8000/api/teacher-login'
     : '';
-        console.log(apiUrl);
+        //console.log(apiUrl);
         const response = await axios.post(apiUrl, {
           email, 
           password
@@ -60,10 +60,34 @@ const handlePasswordChange = (e) => {
         const accessToken = response.data.access_token;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('userType', selectedButton);
+        
+        if(selectedButton === 'teachers')
+        {
+          const isProfileComplete = response.data.isProfileComplete;
+          localStorage.setItem('isProfileComplete', isProfileComplete);
+          if (isProfileComplete === 'true') {
+            navigate('/tutor-profile-view', { state: { user: response.data } });
+          } else {
+            navigate('/add-tutor-profile', { state: { user: response.data } });
+          }
+
+
+          //navigate('/tutors', {state: {user: response.data}});
+
+        }else if(selectedButton === 'students')
+        {
+          const isProfileComplete = response.data.isProfileComplete;
+          localStorage.setItem('isProfileComplete', isProfileComplete);
+          if (isProfileComplete === 'true') {
+            navigate('/student-profile-view', { state: { user: response.data } });
+          } else {
+            navigate('/add-student-profile', { state: { user: response.data } });
+          }
+          //navigate('/profile', {state: {user: response.data}});
+        }
 
         
-          navigate('/tutors', {state: {userData: response.data}});
+          
         }else {
           // Handle login failure
           console.error('Login failed');

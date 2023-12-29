@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import Footer from '../Footer';
+import Navbar from '../NavBar';
 
 const TeacherProfileForm = () => {
 
@@ -64,7 +66,7 @@ const TeacherProfileForm = () => {
         console.log(response.data);
         
        
-        navigate('/tutors', {state: {profile: response.data}});
+        navigate('/tutor-profile-view', {state: {profile: response.data}});
         
       }
       
@@ -79,6 +81,9 @@ const TeacherProfileForm = () => {
 
 
   return (
+    <>
+    <Navbar />
+    
     <div className="mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl m-5">
     <form onSubmit={handleSubmit}>
       <  div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
@@ -271,6 +276,8 @@ const TeacherProfileForm = () => {
       </div>
     </form>
   </div>
+  <Footer />
+  </>
   )
 }
 

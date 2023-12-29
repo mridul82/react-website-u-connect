@@ -25,15 +25,7 @@ const Navbar = () => {
     return location.pathname === `/${path}` ? "text-[#539165]" : "";
   };
 
-  const handleLogout = () => {
-    // Clear the access token from localStorage upon logout
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userType');
 
-    // Redirect to the login page after logout
-    navigate('/');
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -126,7 +118,7 @@ const Navbar = () => {
           
           ) :(
         <Link to={"/login"}>
-            <button class=" py-1 px-4 rounded-full outline transition-all hover:bg-[#539165] hover:text-white hover:shadow-md">
+            <button className=" py-1 px-4 rounded-full outline transition-all hover:bg-[#539165] hover:text-white hover:shadow-md">
               Login
             </button>
           </Link>
@@ -193,4 +185,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default  React.memo(Navbar);;

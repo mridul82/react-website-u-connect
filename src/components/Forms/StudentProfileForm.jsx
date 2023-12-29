@@ -1,5 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+import Footer from '../Footer';
+import Navbar from '../NavBar';
 
 const StudentProfileForm = () => {
     const [number, setNumber] = useState('');
@@ -14,7 +18,10 @@ const StudentProfileForm = () => {
   const [preferredSubjects, setPreferredSubjects] = useState([]);
   const [classPerMonth, setClassPerMonth] = useState('');
   const [preferredTutor, setPreferredTutor] = useState('');
+  const [reference, setReference] = useState('');
   const [profilePic, setProfilePic] = useState(null);
+
+  const navigate = useNavigate();
 
 
   const handleSubjectsChange = (e) => {
@@ -38,7 +45,9 @@ const StudentProfileForm = () => {
     formData.append('guardian_contact', guardianContact);
     formData.append('tutor_gender', preferredTutor);
     formData.append('no_of_classes', classPerMonth);
-    formData.append('profile_pic', profilePic);  
+    formData.append('profile_pic', profilePic);
+    formData.append('reference_id', reference);
+    
    
 
     //console.log([...formData.entries()]);
@@ -60,7 +69,7 @@ const StudentProfileForm = () => {
         console.log(response.data);
         
        
-        //navigate('/tutors', {state: {profile: response.data}});
+        navigate('/student-profile-view', {state: {profile: response.data}, forceRefresh: true });
         
       }
       
@@ -73,7 +82,10 @@ const StudentProfileForm = () => {
 
   return (
     <>
+    <Navbar />
+    
     <div className="mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl m-5">
+    <h2 className=' text-lg text-black'>Compete Your Profile</h2>
     <form onSubmit={handleSubmit}>
       <  div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="-mx-3 md:flex mb-6">
@@ -149,6 +161,21 @@ const StudentProfileForm = () => {
                */}
                <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
             id="title" type="text" placeholder="Guardian Contact" value={guardianContact} onChange={(e) => setGuardianContact(e.target.value)}  />
+            </div>
+          </div>
+          <div className="md:w-1/2 px-3">
+            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="job-type">
+              Reference Id (if any)
+            </label>
+            <div>
+              {/* <select className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="job-type">
+                <option>Full-Time</option>
+                <option>Part-Time</option>
+                <option>Internship</option>
+              </select>
+               */}
+               <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
+            id="title" type="text" placeholder="Reference Id" value={reference} onChange={(e) => setReference(e.target.value)}  />
             </div>
           </div>
      
@@ -319,6 +346,7 @@ const StudentProfileForm = () => {
       </div>
     </form>
   </div>
+  <Footer />
     </>
   )
 }

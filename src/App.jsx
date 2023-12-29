@@ -9,7 +9,15 @@ import Teachers from './components/Teachers'
 
 function App() {
   
+  const userTypeFromStorage = localStorage.getItem("userType");
+  const accessToken = localStorage.getItem("accessToken");
+  const user = localStorage.getItem("user");
+  const storedProfileData = JSON.parse(localStorage.getItem("profileData"));
 
+  console.log(userTypeFromStorage);
+  console.log(accessToken);
+  console.log(user);
+  console.log(storedProfileData);
   return (
     <>
     <Navbar />

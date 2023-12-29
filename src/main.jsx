@@ -15,6 +15,9 @@ import Profile from './components/Pages/Profile.jsx';
 import Service from './components/Pages/Service.jsx';
 import Tutors from './components/Pages/Tutors.jsx';
 
+import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
+import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -35,7 +38,11 @@ const router = createBrowserRouter([
     element: <Service />
   },
   {
-    path: '/tutors',
+    path: '/add-tutor-profile',
+    element: <TeacherProfileForm />
+  },
+  {
+    path: '/tutor-profile-view',
     element: <Tutors />
   },
   {
@@ -43,12 +50,20 @@ const router = createBrowserRouter([
     element: <Contact />
   },
   {
-path: '/profile',
+path: '/student-profile-view',
 element: <Profile />
   },
   {
     path: '/signup',
     element: <SignUp />
+  },
+  {       
+    path: '/add-student-profile',
+    element: <StudentProfileForm />
+  },
+  {
+    path: '/add-teacher-profile',
+    element: <TeacherProfileForm />
   }
 ]);
 
