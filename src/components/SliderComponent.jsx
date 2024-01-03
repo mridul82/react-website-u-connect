@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SliderComponent = () => {
 
+  const accessToken = localStorage.getItem("accessToken");
+  //console.log(accessToken);
 
   return (
     <div className=" min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-25 mx-5 ">
@@ -19,75 +22,99 @@ const SliderComponent = () => {
         library of courses, from academic subjects to practical skills, all
         designed to help you achieve your goals.
       </p>
-      {/* <form className="mt-4 flex items-center justify-center flex-col sm:flex-row">
-  <input
-    type="text"
-    placeholder="Enter subject"
-    className="mr-2 py-2 px-3 rounded-md border border-gray-300 focus:outline-none focus:border-brightGreen mb-2 sm:mb-0"
-  />
-  <input
-    type="text"
-    placeholder="Enter location"
-    className="mr-2 py-2 px-3 rounded-md border border-gray-300 focus:outline-none focus:border-brightGreen mb-2 sm:mb-0"
-  />
-  <button
-    type="submit"
-    className=" py-2 px-5 rounded-full outline transition-all hover:bg-[#539165] hover:text-white hover:shadow-lg"
+
+<div className='flex mt-10'>
+{accessToken ? (
+  <Link to="/"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600
+      hover:border-transparent hover:shadow-lg flex items-center"
   >
-    Search
-  </button>
-</form> */}
-<form className="mt-4 flex items-center justify-center flex-col sm:flex-row">
-  <div className="relative mb-2 sm:mb-0 mr-2">
-    <select
-      className="block appearance-none w-48 py-2 px-3 rounded-md border border-gray-300 focus:outline-none focus:border-brightGreen"
+   <span className=" text-sm md:font-bold md:text-lg mr-1"> Find Tutors</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
     >
-      <option value="find-tutor">Find a Tutor</option>
-      <option value="become-tutor">Become a Tutor</option>
-    </select>
-    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-      <svg
-        className="fill-current h-4 w-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fillRule="evenodd"
-          d="M6.293 8.293a1 1 0 011.414 0L10 10.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </div>
-  </div>
-  <div className="relative mb-2 sm:mb-0">
-    <select
-      className="block appearance-none w-48 py-2 px-3 rounded-md border border-gray-300 focus:outline-none focus:border-brightGreen"
-    >
-      <option value="">Choose Location</option>
-      <option value="location2">Location 2</option>
-      {/* Add more location options */}
-    </select>
-    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-      <svg
-        className="fill-current h-4 w-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fillRule="evenodd"
-          d="M6.293 8.293a1 1 0 011.414 0L10 10.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </div>
-  </div>
-  <button
-    type="submit"
-    className=" ml-5 py-2 px-5 rounded-full outline transition-all bg-white border border-gray-300 hover:bg-[#539165] hover:text-white hover:border-transparent hover:shadow-lg"
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+):(
+  <Link to="/"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600
+      hover:border-transparent hover:shadow-lg flex items-center"
   >
-    Search
-  </button>
-</form>
+   <span className=" text-sm md:font-bold md:text-lg mr-1"> Find Tutors</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
+    >
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+)}
+{
+  accessToken ? (
+<Link to="/"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
+     hover:border-transparent hover:shadow-lg flex items-center"
+  >
+   <span className=" text-sm md:font-bold md:text-lg mr-1">Become a Tutor</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
+    >
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+  ):(
+    <Link to="/login"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
+     hover:border-transparent hover:shadow-lg flex items-center"
+  >
+   <span className=" text-sm md:font-bold md:text-lg mr-1">Become a Tutor</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
+    >
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+  )
+}
+  
+</div>      
+
 
       
     </div>

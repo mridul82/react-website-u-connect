@@ -88,7 +88,7 @@ const Profile = () => {
   //   }
   // };
 
-  console.log(profileData);
+ // console.log(profileData);
 
   return(
     <>
@@ -100,12 +100,18 @@ const Profile = () => {
       <div>
        
         {profileData && profileData.profile !== null ? (
-          <>           
+          <> 
+          <button className="flex items-end">
+          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
+       Enroll for Rank Booster Test
+       </Link>
+            </button>          
+         
               {/* Display student's profile */}
 
               <div
                 className="flex max-w-2xl mx-auto bg-white rounded-xl shadow-lg 
-              overflow-hidden hover:translate-y-6 transition duration-300 ease-in-out mt-10 mb-10"
+              overflow-hidden hover:translate-y-6 transition duration-300 ease-in-out mb-10"
               >
                 <div className="flex justify-between p-6">
                   {profileData.imageUrl && ( // Check if profileData.imageUrl exists
@@ -221,13 +227,22 @@ const Profile = () => {
           </>
         ) :
         (
-          <div className="text-center text-red-500 font-bold mb-5 mt-20">
+          <>
+           <button className="flex items-end">
+          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
+       Enroll for Rank Booster Test
+       </Link>
+            </button>  
+
+            <div className="text-center text-red-500 font-bold mb-5 mt-20">
           <p>Your profile is incomplete!</p>
           {/* Add more guidance or information for completing the profile */}
           <Link to="/add-student-profile" className="block mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
         Complete Profile
       </Link>
         </div>
+          </>
+        
         )
         }
       </div>

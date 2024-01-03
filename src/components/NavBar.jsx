@@ -92,7 +92,7 @@ const Navbar = () => {
           >
             Services
           </Link>
-          <Link
+          {/* <Link
             style={{ textDecoration: "none" }}
             to={"/tutors"}
             
@@ -102,7 +102,7 @@ const Navbar = () => {
             )}`}
           >
             Teachers
-          </Link>
+          </Link> */}
           <Link
             to={"/contact"}
            

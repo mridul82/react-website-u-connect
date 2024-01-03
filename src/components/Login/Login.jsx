@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../Layout/Loader";
 
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -37,7 +37,18 @@ const handlePasswordChange = (e) => {
 };
 
   const handleLogin = async(e) => {
+     
       e.preventDefault();
+
+      if (!email.trim() || !password.trim() || selectedButton === null) {
+        console.log(selectedButton);
+        // Display toast message if input fields are empty
+        toast.error('Please fill all fields and select an option.', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        return;
+      }
+      
       setLoading(true);
       try {
 
@@ -66,9 +77,9 @@ const handlePasswordChange = (e) => {
           const isProfileComplete = response.data.isProfileComplete;
           localStorage.setItem('isProfileComplete', isProfileComplete);
           if (isProfileComplete === 'true') {
-            navigate('/tutor-profile-view', { state: { user: response.data } });
+            navigate('/tutor-profile-view', { state: { user: response.data, token:accessToken } });
           } else {
-            navigate('/add-tutor-profile', { state: { user: response.data } });
+            navigate('/add-tutor-profile', { state: { user: response.data, token:accessToken } });
           }
 
 
@@ -79,9 +90,9 @@ const handlePasswordChange = (e) => {
           const isProfileComplete = response.data.isProfileComplete;
           localStorage.setItem('isProfileComplete', isProfileComplete);
           if (isProfileComplete === 'true') {
-            navigate('/student-profile-view', { state: { user: response.data } });
+            navigate('/student-profile-view', { state: { user: response.data, token:accessToken } });
           } else {
-            navigate('/add-student-profile', { state: { user: response.data } });
+            navigate('/add-student-profile', { state: { user: response.data, token:accessToken } });
           }
           //navigate('/profile', {state: {user: response.data}});
         }
@@ -90,10 +101,14 @@ const handlePasswordChange = (e) => {
           
         }else {
           // Handle login failure
-          console.error('Login failed');
+          toast.error('Login Fail.', {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       } catch (error) {
-        console.error('Error during login:', error);
+        toast.error('An error occurred. Please try again later.', {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }finally {
       setLoading(false); // Set loading back to false after login attempt
     }
@@ -110,7 +125,7 @@ const handlePasswordChange = (e) => {
       <Loader />
     ) : (
       <div className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
-        
+            <ToastContainer />
         <div className="p-4 py-6 text-white bg-red-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
           <div className="my-3 text-4xl font-bold tracking-wider text-center">
             <a href="#">Urja Connect</a>
@@ -181,7 +196,7 @@ const handlePasswordChange = (e) => {
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
-                
+                required
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
@@ -201,6 +216,7 @@ const handlePasswordChange = (e) => {
                 id="password"
                 value={password}
                 onChange={handlePasswordChange}
+                required
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>

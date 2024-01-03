@@ -10,11 +10,10 @@ const ServiceCard = (props) => {
       </div>
       <h1 className=" font-semibold text-lg">{props.title}</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-        praesentium asperiores unde veniam, perspiciatis neque!
+       {props.desc}
       </p>
 
-      <h3 className=" text-backgroundColor cursor-pointer hover:text-[#ade9dc] transition duration-300 ease-in-out">
+      <h3 className="text-red-400 cursor-pointer hover:text-[#ade9dc] transition duration-300 ease-in-out">
         Learn more
       </h3>
     </div>
