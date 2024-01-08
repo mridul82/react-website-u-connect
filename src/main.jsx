@@ -17,6 +17,8 @@ import Tutors from './components/Pages/Tutors.jsx';
 
 import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
 import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
+import BoardTestSeries from './components/Pages/BoardTestSeries.jsx';
+import RankBoosterTestSeries from './components/Pages/RankBoosterTestSeries.jsx';
 
 
 
@@ -64,7 +66,15 @@ element: <Profile />
   {
     path: '/add-teacher-profile',
     element: <TeacherProfileForm />
-  }
+  },
+  {
+    path: '/target-board-test-series',
+    element: <BoardTestSeries />
+  },
+  {
+    path: '/rank-booster-test-series',
+    element: <RankBoosterTestSeries />
+  },
 ]);
 
 

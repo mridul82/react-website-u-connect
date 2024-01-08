@@ -84,7 +84,13 @@ const Tutors = () => {
       ) : (
         <div>
           {profileData && profileData.profile !== null ? (
+            
             <>
+            <button className="flex items-end">
+          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
+       Enroll for Rank Booster Test
+       </Link>
+            </button> 
               <div className="flex max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden hover:translate-y-6 transition duration-300 ease-in-out mt-10">
                 <div className="flex justify-between p-6">
                   <img

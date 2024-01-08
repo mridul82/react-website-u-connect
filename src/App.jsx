@@ -8,6 +8,7 @@ import Teachers from './components/Teachers'
 import { ToastContainer, toast } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
+import Test from './components/Test'
 
 
 
@@ -32,6 +33,7 @@ function App() {
     
         
     <SliderComponent /> 
+    <Test />
     <Teachers />
     <Services />
     </main>

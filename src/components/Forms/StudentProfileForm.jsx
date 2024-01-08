@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Footer from '../Footer';
 import Navbar from '../NavBar';
@@ -83,9 +83,21 @@ const StudentProfileForm = () => {
   return (
     <>
     <Navbar />
-    
+    <div className="mx-auto max-w-6xl bg-white py-6 px-5 lg:px-5 shadow-xl m-5">
+<button className='flex items-center'>
+<Link className="bg-[#539165] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4 items-center justify-center" >
+       Enroll for Test Series
+       </Link>
+</button>
+   
+          
+            
+    </div>
+
+            
     <div className="mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl m-5">
-    <h2 className=' text-lg text-black'>Compete Your Profile</h2>
+    
+    <h2 className=' text-lg font-bold text-[#539165] mb-5'>Compete Your Profile (For finding tutor)</h2>
     <form onSubmit={handleSubmit}>
       <  div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="-mx-3 md:flex mb-6">

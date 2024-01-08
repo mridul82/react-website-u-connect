@@ -31,7 +31,7 @@ const SliderComponent = () => {
      bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600
       hover:border-transparent hover:shadow-lg flex items-center"
   >
-   <span className=" text-sm md:font-bold md:text-lg mr-1"> Find Tutors</span>
+   <span className=" text-sm md:font-bold md:text-sm mr-1"> Find Tutors</span>
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
@@ -45,6 +45,7 @@ const SliderComponent = () => {
       />
     </svg>
   </Link>
+  
 ):(
   <Link to="/"
     
@@ -52,7 +53,7 @@ const SliderComponent = () => {
      bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600
       hover:border-transparent hover:shadow-lg flex items-center"
   >
-   <span className=" text-sm md:font-bold md:text-lg mr-1"> Find Tutors</span>
+   <span className=" text-sm md:font-bold md:text-sm mr-1"> Find Tutors</span>
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
@@ -75,7 +76,7 @@ const SliderComponent = () => {
      bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
      hover:border-transparent hover:shadow-lg flex items-center"
   >
-   <span className=" text-sm md:font-bold md:text-lg mr-1">Become a Tutor</span>
+   <span className=" text-sm md:font-bold md:text-sm mr-1">Become a Tutor</span>
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
@@ -96,7 +97,52 @@ const SliderComponent = () => {
      bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
      hover:border-transparent hover:shadow-lg flex items-center"
   >
-   <span className=" text-sm md:font-bold md:text-lg mr-1">Become a Tutor</span>
+   <span className=" text-sm md:font-bold md:text-sm mr-1">Become a Tutor</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
+    >
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+  )
+}
+{
+  accessToken ? (
+<Link to="/"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
+     hover:border-transparent hover:shadow-lg flex items-center"
+  >
+   <span className=" text-sm md:font-bold md:text-sm mr-1">Register for tests</span>
+    <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+     
+    >
+      <path
+        fillRule="evenodd"
+        d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"
+      />
+    </svg>
+  </Link>
+  ):(
+    <Link to="/login"
+    
+    className=" ml-5 py-2 px-5 rounded-full outline transition-all
+     bg-[#539165] text-white border border-gray-300 hover:bg-white hover:text-green-600 
+     hover:border-transparent hover:shadow-lg flex items-center"
+  >
+   <span className=" text-sm md:font-bold md:text-sm mr-1">Enroll for tests</span>
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
