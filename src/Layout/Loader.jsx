@@ -2,13 +2,42 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div
-    className=" flex items-center justify-center  h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-    role="status">
-    <span
-      className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-    >Loading...</span>
-  </div>
+    <div className=" w-3/4 shadow-xl">
+     <div className=" w-full border border-gray-200 p-4 col-span-3">
+        <div className="animate-pulse space-y-8">
+            <div className="flex space-x-4">
+            <div className="bg-gray-200 h-24 w-24 rounded-full"></div>
+                <div className="space-y-2 flex-1 pt-4">
+                 <div className="h-6 bg-gray-200 w-1/2"></div>
+                 <div className="h-6 bg-gray-200 w-1/3"></div>
+                </div>
+            </div>
+            <div className="flex-1 space-y-2">
+                <div className="h-6 bg-gray-200 full"></div>
+                <div className="h-6 bg-gray-200 w-3/3"></div>
+            </div>
+        </div>
+    </div>
+    
+  <div className=" w-full border border-gray-200 p-4 col-span-3">
+        <div className="animate-pulse space-y-8">
+            <div className="flex space-x-4">
+            <div className="bg-gray-200 h-24 w-24 rounded-full"></div>
+                <div className="space-y-2 flex-1 pt-4">
+                 <div className="h-6 bg-gray-200 w-1/2"></div>
+                 <div className="h-6 bg-gray-200 w-1/3"></div>
+                </div>
+            </div>
+            <div className="flex-1 space-y-2">
+                <div className="h-6 bg-gray-200 full"></div>
+                <div className="h-6 bg-gray-200 w-3/3"></div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    
 
 
     

@@ -55,7 +55,9 @@ const Tutors = () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
-          const response = await axios.get("http://localhost:8000/api/teacher-profile", {
+          const apiURL = import.meta.env.VITE_REACT_APP_API_URL;
+          //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+          const response = await axios.get(`${apiURL}/api/teacher-profile`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
               'Content-Type': 'application/json', // Assuming you're sending JSON data
@@ -87,9 +89,9 @@ const Tutors = () => {
             
             <>
             <button className="flex items-end">
-          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
-       Enroll for Rank Booster Test
-       </Link>
+          {/* <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4" to="/add-student-profile">
+      
+       </Link> */}
             </button> 
               <div className="flex max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden hover:translate-y-6 transition duration-300 ease-in-out mt-10">
                 <div className="flex justify-between p-6">
@@ -116,6 +118,12 @@ const Tutors = () => {
                     {profileData.profile.city}
                   </div>
                 </div>
+                <div className="p-6">
+                  <div className="text-3xl font-bold mb-4">
+                    ID: {profileData.profile.register_id}
+                  </div>
+                  
+                </div>
               </div>
               <div className="flex flex-wrap justify-center gap-6 md:max-w-8xl mx-auto mt-10">
                 <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
@@ -131,7 +139,7 @@ const Tutors = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Number of Students:{" "}
-                      <span className="text-blue-500">12</span>
+                      <span className="text-blue-500">0</span>
                     </p>
                   </div>
                 </div>
@@ -148,7 +156,7 @@ const Tutors = () => {
                   </div>
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
-                      Exam Conducted: <span className="text-blue-500">5</span>
+                      Exam Conducted: <span className="text-blue-500">0</span>
                     </p>
                   </div>
                 </div>
@@ -170,8 +178,8 @@ const Tutors = () => {
                   </div>
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
-                      Comission Earned:{" "}
-                      <span className="text-blue-500">700</span>
+                      Remuneration Earned:{" "}
+                      <span className="text-blue-500">0</span>
                     </p>
                   </div>
                 </div>

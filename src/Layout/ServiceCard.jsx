@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ServiceCard = (props) => {
   return (
@@ -12,10 +13,12 @@ const ServiceCard = (props) => {
       <p>
        {props.desc}
       </p>
-
-      <h3 className="text-red-400 cursor-pointer hover:text-[#ade9dc] transition duration-300 ease-in-out">
+<Link to={props.link}>
+<h3 className="text-red-400 cursor-pointer hover:text-[#ade9dc] transition duration-300 ease-in-out" >
         Learn more
       </h3>
+</Link>
+      
     </div>
   )
 }

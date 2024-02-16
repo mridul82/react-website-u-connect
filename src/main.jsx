@@ -18,7 +18,10 @@ import Tutors from './components/Pages/Tutors.jsx';
 import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
 import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
 import BoardTestSeries from './components/Pages/BoardTestSeries.jsx';
+import FindTutor from './components/Pages/FindTutor.jsx';
 import RankBoosterTestSeries from './components/Pages/RankBoosterTestSeries.jsx';
+import TermsCondition from './components/Pages/TermsCondition.jsx';
+import TestSeries from './components/TestSeries.jsx';
 
 
 
@@ -75,6 +78,18 @@ element: <Profile />
     path: '/rank-booster-test-series',
     element: <RankBoosterTestSeries />
   },
+  {
+    path: '/test-series',
+    element: <TestSeries />
+  },
+  {
+    path: '/terms-conditions',
+    element: <TermsCondition />
+  },
+  {
+    path: '/find-tutor',
+    element: <FindTutor />
+  }
 ]);
 
 

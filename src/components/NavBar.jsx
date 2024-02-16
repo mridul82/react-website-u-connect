@@ -49,12 +49,14 @@ const Navbar = () => {
   return (
     <div className={isSticky ? "sticky top-0 z-50" : ""}>
       <div className="flex flex-row justify-between p-4 px-5 md:px-32 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-        <div>
+        <div className="flex justify-between">
+        <img src="logo/logo.jpg" height={20} width={50} className="rounded-full object-cover" />
           <Link
             to="/"
             className=" font-semibold text-2xl p-1 cursor-pointer"
             style={{ textDecoration: "none" }}
           >
+            
             Urja <span className="text-[#539165]">Connect</span>
           </Link>
         </div>

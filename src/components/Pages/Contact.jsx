@@ -5,8 +5,7 @@ import Navbar from '../NavBar';
 
 import {
   faEnvelope,
-  faHandshake,
-  faPhone
+  faHandshake
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -30,21 +29,21 @@ const Contact = () => {
                         Reach Us At 
                     </h5> 
                     <ul> 
-                        <li className="mt-2"> 
+                        {/* <li className="mt-2"> 
                             <span><FontAwesomeIcon
                           icon={faPhone}
                           
                         /> </span> 
                             +91-9998887776 
-                        </li> 
+                        </li>  */}
                         <li className="mt-2"> 
                             <span><FontAwesomeIcon icon={faEnvelope} /> </span> 
-                            <span>feedback@Urja.org</span> 
+                            <span>urja.connect@findtutor.tech</span> 
                         </li> 
                         <li className="mt-2"> 
                             <span><i className="fa-solid fa-map-pin mr-2"></i>   
                             </span> 
-                            A-143, 9th Floor, KK 
+                            
                             <span className="pl-4"> 
                             Guwahati Assam  
                             </span> 
@@ -65,12 +64,12 @@ const Contact = () => {
                     
                     <div className="text-left mt-4"> 
                         <span><FontAwesomeIcon icon={faEnvelope} /> </span> 
-                        <span>branding@urja.org</span> 
+                        <span>urja.connect@findtutor.tech</span> 
                     </div> 
                     <div className="mt-2 text-left"> 
                     <span><i className="fa-solid fa-map-pin mr-2"></i>  </span> 
-                            A-143, 9th Floor, KK   -<span className="pl-5">136, 
-                        GUwahati Assam</span> 
+                           <span className="pl-5"> 
+                        Guwahati Assam</span> 
                     </div> 
                 </div> </div>
       </div>

@@ -19,7 +19,8 @@ const DropDown = (props) => {
       // Redirect to the login page after logout
       navigate('/');
     };
-   
+   //console.log(localStorage.getItem('isProfileComplete') === 'true');
+   const isProfileComplete = localStorage.getItem('isProfileComplete') === 'true';
   
     // Close the dropdown when clicked outside
 //     useEffect(() => {
@@ -50,12 +51,16 @@ const DropDown = (props) => {
             {
   userType === 'students' && (
     <>
+   
       <Link to="/student-profile-view" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
         View Profile
       </Link>
-      <Link to="/add-student-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-        Add Profile
-      </Link>
+      {!isProfileComplete && (
+        <Link to="/add-student-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+          Add Profile
+        </Link>
+      )}
+     
     </>
   )
  }
@@ -65,9 +70,13 @@ const DropDown = (props) => {
       <Link to="/tutor-profile-view" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
         View Profile
       </Link>
-      <Link to="/add-tutor-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-        Add Profile
-      </Link>
+
+      {!isProfileComplete && (
+       <Link to="/add-tutor-profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+       Add Profile
+     </Link>
+      )}
+      
     </>
   )
  }

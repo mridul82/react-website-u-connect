@@ -22,7 +22,9 @@ const Profile = () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
-          const response = await axios.get("http://localhost:8000/api/student-profile", {
+         // const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
+          const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+          const response = await axios.get(`${apiURL}/api/student-profile`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
               'Content-Type': 'application/json', // Assuming you're sending JSON data
@@ -102,8 +104,8 @@ const Profile = () => {
         {profileData && profileData.profile !== null ? (
           <> 
           <button className="flex items-end">
-          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
-       Enroll for Rank Booster Test
+          <Link to="/target-board-test-series" className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
+       Enroll for Test
        </Link>
             </button>          
          
@@ -229,8 +231,8 @@ const Profile = () => {
         (
           <>
            <button className="flex items-end">
-          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4">
-       Enroll for Rank Booster Test
+          <Link className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4" to="/add-student-profile">
+       Enroll for Test
        </Link>
             </button>  
 

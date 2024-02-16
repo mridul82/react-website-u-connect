@@ -1,7 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const handleEmailClick = () => {
+    const emailAddress = 'urja.connect@findtutor.tech'
+    window.location.href = `mailto:${emailAddress}`;
+  };
+
+  const currentYear = new Date().getFullYear();
+  
   return (
     <div className="bg-brightBackground text-white rounded-t-2xl mt-8 md:mt-0">
 <div className="flex flex-col md:flex-row justify-between p-8 md:px-32 px-5">
@@ -32,12 +39,12 @@ const Footer = () => {
               Services
             </Link>
             <Link
-              to="doctors"
+              to="terms-conditions"
               
               duration={500}
               className=" hover:text-hoverColor transition-all cursor-pointer"
             >
-              Tutor
+              Our terms & conditions
             </Link>
           </nav>
         </div>
@@ -73,24 +80,21 @@ const Footer = () => {
         <div className=" w-full md:w-1/4">
           <h1 className=" font-medium text-xl pb-4 pt-5 md:pt-0">Contact Us</h1>
           <nav className=" flex flex-col gap-2">
-            <Link to="/"  duration={500}>
-              123 new york city 
-            </Link>
-            <Link to="/"  duration={500}>
-              support@care.com
-            </Link>
-            <Link to="/" duration={500}>
-              +123-456-7890
-            </Link>
+            
+            <div style={{ cursor: 'pointer' }} onClick={handleEmailClick}>
+              urja.connect@findtutor.tech
+            </div>
+           
+            
+           
           </nav>
         </div>
       </div>
       <div>
-        <p className=" text-center py-4">
-          @copyright developed by
-          <span className=" text-hoverColor"> ms</span> | All
-          rights reserved
-        </p>
+      <p className="text-center py-4">
+      @copyright <span className="text-hoverColor">Urja Connect</span> | All rights reserved {currentYear}
+    </p>
+    
       </div>
     </div>
   )

@@ -1,11 +1,34 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import Loader from '../../Layout/Loader';
 import Footer from '../Footer';
 import Navbar from '../NavBar';
 
 const StudentProfileForm = () => {
+
+  const location = useLocation();
+  const [userName, setUserName] = useState('');
+
+//console.log(JSON.parse(localStorage.getItem('user')));
+  useEffect(() => {
+    if (location.state === null) {
+      // Set the default value for userName if location.state is null
+      const user = JSON.parse(localStorage.getItem('user'));
+      setUserName(user.name);
+    } else {
+      const { user } = location.state || {};
+      // Access user name
+      const newUserName = user ? user.user.name : '';
+      // Set the userName state based on the user data in location.state
+      setUserName(newUserName);
+    }
+  }, [location.state]);
+
+
+
+ 
     const [number, setNumber] = useState('');
   const [selectedGender, setSelectedGender] = useState('M');
   const [address, setAddress] = useState('');
@@ -21,6 +44,10 @@ const StudentProfileForm = () => {
   const [reference, setReference] = useState('');
   const [profilePic, setProfilePic] = useState(null);
 
+  
+
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
 
@@ -31,7 +58,21 @@ const StudentProfileForm = () => {
 
 
   const handleSubmit = async(e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+
+   // Validate 'number' before appending to FormData
+   if (!number.trim() || !guardianContact.trim()) {
+   
+    toast.error('Phone Number or Guardian Conatact cannot be blank', {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    return; // Do not proceed with form submission
+  }
+
+
+   
+   setLoading(true);
+     
 
     const formData = new FormData();
     formData.append('whatapp_no', number);
@@ -53,8 +94,8 @@ const StudentProfileForm = () => {
     //console.log([...formData.entries()]);
     const token = localStorage.getItem('accessToken');
     const userType = localStorage.getItem('userType');
-   console.log(token);
-   console.log(userType);
+   //console.log(token);
+   //console.log(userType);
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -63,19 +104,24 @@ const StudentProfileForm = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/student-profile', formData, config);
+      
+    //const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
+    const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+      const response = await axios.post(`${apiURL}/api/student-profile`, formData, config);
       
       if(response.status === 200) {
-        console.log(response.data);
+        setLoading(false);
+        //console.log(response.data);
         
-       
+      
         navigate('/student-profile-view', {state: {profile: response.data}, forceRefresh: true });
         
       }
       
 
     } catch (error) {
-      console.log(error)
+      setLoading(false); 
+      //console.log(error)
     }
   }
 
@@ -83,34 +129,36 @@ const StudentProfileForm = () => {
   return (
     <>
     <Navbar />
-    <div className="mx-auto max-w-6xl bg-white py-6 px-5 lg:px-5 shadow-xl m-5">
-<button className='flex items-center'>
-<Link className="bg-[#539165] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4 items-center justify-center" >
+    {/* <div className="mx-auto max-w-6xl bg-white py-6 px-5 lg:px-5 shadow-xl m-5">
+<button className='flex'>
+<Link className="bg-[#539165] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4 items-center justify-center" to="/test-series">
        Enroll for Test Series
        </Link>
 </button>
    
           
             
-    </div>
+    </div> */}
 
             
     <div className="mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl m-5">
+    {loading ? (
+      <Loader />
+    ) : (<>
     
-    <h2 className=' text-lg font-bold text-[#539165] mb-5'>Compete Your Profile (For finding tutor)</h2>
+    <h2 className=' text-lg font-bold text-[#539165] mb-5'>Registration for enrolling for Test Series / Find Tutor</h2>
+    <ToastContainer />
     <form onSubmit={handleSubmit}>
-      <  div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+      <  div className="bg-white px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="-mx-3 md:flex mb-6">
           <div className="md:w-1/3 px-3 mb-6 md:mb-0">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="company">
               Name*
             </label>
             <input className="w-full bg-gray-200 text-black border
-             border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Enter your name"  />
+             border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Enter your name" value={userName}  readOnly/>
             <div>
-              <span className="text-red-500 text-xs italic">
-                Please fill out this field.
-              </span>
+              
             </div>
           </div>
           <div className="md:w-1/3 px-3">
@@ -213,7 +261,8 @@ const StudentProfileForm = () => {
                 <option value="8">VIII</option>
                 <option value="9">IX</option>
                 <option value="10">X</option>
-                            
+                <option value="11">XI</option>
+                <option value="12">XII</option>          
               </select>
             </div>
           </div>
@@ -287,7 +336,7 @@ const StudentProfileForm = () => {
     </div>
     <div className="md:w-1/2 px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="department">
-              No of Classes per month*
+              Classes/month (Only for Find Tutor)
             </label>
             <div>
               {/* <select className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="department">
@@ -311,7 +360,7 @@ const StudentProfileForm = () => {
 
           <div className="md:w-1/2 px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="department">
-             Preferred Tutor*
+             Preferred Tutor (Only for Find Tutor)
             </label>
             <div>
              
@@ -320,7 +369,7 @@ const StudentProfileForm = () => {
               id="class"
               value={preferredTutor} onChange={(e) => setPreferredTutor(e.target.value)}
               >
-                <option value="">Your Preferred Tutor</option>
+                <option value="">Your Preferred Tutor </option>
                 <option value="female">Female</option>
                 <option value="male">Male</option>
                 <option value="any">Any</option>
@@ -357,6 +406,8 @@ const StudentProfileForm = () => {
         </div>
       </div>
     </form>
+    </>)}
+    
   </div>
   <Footer />
     </>

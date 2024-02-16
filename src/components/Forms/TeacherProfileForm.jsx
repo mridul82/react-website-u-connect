@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import Loader from '../../Layout/Loader';
 import Footer from '../Footer';
 import Navbar from '../NavBar';
 
@@ -24,12 +25,24 @@ const TeacherProfileForm = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [files, setFiles] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
  
     
   const handleSubmit = async(e) => {
     e.preventDefault();
-   
 
+
+    // Validate 'number' before appending to FormData
+   if (!number.trim() ) {
+   
+    toast.error('Phone Number or Guardian Conatact cannot be blank', {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    return; // Do not proceed with form submission
+  }
+   
+    setLoading(true);
     const formData = new FormData();
     formData.append('whatapp_no', number);
     formData.append('gender', selectedGender);
@@ -50,8 +63,7 @@ const TeacherProfileForm = () => {
 
     const token = localStorage.getItem('accessToken');
     const userType = localStorage.getItem('userType');
-   console.log(token);
-   console.log(userType);
+   
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -60,10 +72,12 @@ const TeacherProfileForm = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/teacher-profile', formData, config);
+      const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
+      //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+      const response = await axios.post(`${apiURL}/api/teacher-profile`, formData, config);
       
       if(response.status === 200) {
-        console.log(response.data);
+        setLoading(false);
         
        
         navigate('/tutor-profile-view', {state: {profile: response.data}});
@@ -85,8 +99,12 @@ const TeacherProfileForm = () => {
     <Navbar />
     
     <div className="mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl m-5">
+    {loading ? (
+      <Loader />
+    ) : (<>
+    <h2 className=' text-lg font-bold text-[#539165] mb-5'>Registration for Teachers/Tutors</h2>
     <form onSubmit={handleSubmit}>
-      <  div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+      <  div className="bg-white  px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="-mx-3 md:flex mb-6">
           <div className="md:w-1/3 px-3 mb-6 md:mb-0">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="company">
@@ -95,9 +113,7 @@ const TeacherProfileForm = () => {
             <input className="w-full bg-gray-200 text-black border
              border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Enter your name"  />
             <div>
-              <span className="text-red-500 text-xs italic">
-                Please fill out this field.
-              </span>
+              
             </div>
           </div>
           <div className="md:w-1/3 px-3">
@@ -228,13 +244,13 @@ const TeacherProfileForm = () => {
           </div>
           <div className="md:w-1/2 px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="department">
-              Preferred Time*
+              Upi Number(Remuneration Payment)*
             </label>
             <div>
              
 
 <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
-            id="title" type="text" placeholder="E.g: 4:00 PM" 
+            id="title" type="text" placeholder="E.g: phonepe, gpay, paytm etc" 
             value={preferredTime} onChange={(e) => setPreferredTime(e.target.value)}
             />            </div>
           </div>
@@ -258,7 +274,7 @@ const TeacherProfileForm = () => {
         <div className="-mx-3 md:flex mb-6">
           <div className="md:w-full px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="application-link">
-              Upload Academic Files*
+              Upload Aadhar Photocopy*
             </label>
             <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
             id="application-link" type="file" multiple placeholder="E.g Master Degree Marksheet"
@@ -275,6 +291,7 @@ const TeacherProfileForm = () => {
         </div>
       </div>
     </form>
+    </>)}
   </div>
   <Footer />
   </>
