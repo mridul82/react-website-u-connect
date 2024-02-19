@@ -36,11 +36,23 @@ const BoardTestSeries = () => {
 
      console.log(cartExams);
   }
+
+  //delete test
+
+  const handleDeleteTest = (testId) => {
+    // Filter out the test with the provided testId
+    const updatedExams = cartExams.filter((exam) => exam.id !== testId);
+    
+    // Update the state with the filtered array
+    setcartExams(updatedExams);
+  
+    console.log("Test with ID", testId, "deleted from the list.");
+  };
  
 
   const handleTabChange = (test) => {
     
-    getTests();
+   // getTests();
    const clickedIndex = examName.findIndex((exam) => exam.test_series_name === test);
    const clickedTest = examData.filter((exam) => exam.test_series_name === test);
     
@@ -101,7 +113,7 @@ const BoardTestSeries = () => {
         {isLoading ? (
         <Loader />
       ) : (
-        <div className="container mx-auto">
+        <div className=" container w-full">
           {/* Tab buttons */}
           <div className="flex mb-4">
            
@@ -122,45 +134,53 @@ const BoardTestSeries = () => {
         
         
       </div>  
+      <div className="md:flex md:justify-between ">
       
-
-      {examData.map(exam => (
+      <div className="md:w-2/3 w-full md:flex-col" >
+{examData.map(exam => (
          
 
-          <div className="flex justify-between w-full md:w-2/3" key={exam.id}>
-          <div className=" w-full">
-            {/* Horizontal cards with content */}
-            <div className="bg-white p-4 mb-4 border border-gray-300 rounded-lg shadow-lg">
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl font-semibold mb-2">{exam.chapter_name}</h2>
+         
+         <div key={exam.id}>
+           {/* Horizontal cards with content */}
+           <div className="bg-white p-4 mb-4 border border-gray-300 rounded-lg shadow-lg">
+             <div className="flex items-center justify-between mb-2">
+               <h2 className="text-xl font-semibold mb-2">{exam.chapter_name}</h2>
 
-                {/* Buttons on the extreme right */}
-                <div className="flex flex-col items-end">
-                 
-                  <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" onClick={() => handleAddTest({ test: exam })}>
-                  Add Test
-                  </button>
-                </div>
-              </div>test_series_name
-              <div className="flex items-center justify-between font-light">
-                <span className="mr-2">Price: ₹{exam.test_price}</span>
-                <span className="mr-2">Subject:{exam.subjects}</span>
-                <span className="mr-2">Test Code: {exam.test_code}</span>
-                <span className="mr-2"> {exam.test_series_name}</span>
-              </div>
-            </div>
+               {/* Buttons on the extreme right */}
+               <div className="flex flex-row items-end">
+                
+                 <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" onClick={() => handleAddTest({ test: exam })}>
+                 Add Test
+                 </button>
+                 <button 
+  className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"  onClick={() => handleDeleteTest(exam.id)}>  Delete Test </button>
+               </div>
+             </div>test_series_name
+             <div className="flex items-center justify-between font-light">
+               <span className="mr-2">Price: ₹{exam.test_price}</span>
+               <span className="mr-2">Subject:{exam.subjects}</span>
+               <span className="mr-2">Test Code: {exam.test_code}</span>
+               <span className="mr-2"> {exam.test_series_name}</span>
+             </div>
+           </div>
 
-            {/* Add more similar cards for Menu 1 */}
-          </div>
-        </div>
+           {/* Add more similar cards for Menu 1 */}
+         </div>
+      
+
+       ))
+        
+       
+     }
+   
+
+     </div>
+     <Cart cartExams={cartExams} />
+     </div>
 
 
-        ))
-             
-      }
-
-
-      <Cart cartExams={cartExams} />
+      
         </div>
   
   )}
