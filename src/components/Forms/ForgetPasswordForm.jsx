@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import API_CONFIG from '../../Config/apiLink';
 import Loader from '../../Layout/Loader';
 
 
@@ -30,10 +31,10 @@ const ForgetPasswordForm = () => {
       }
       setLoading(true);
       try {
-        const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
+       // const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
         // const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
 
-         const response = await axios.post(`${apiURL}/api/forget-password`, {
+         const response = await axios.post(`${API_CONFIG.BASE_URL}/api/forget-password`, {
             email
          });
 

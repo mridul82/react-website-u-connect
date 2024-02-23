@@ -90,7 +90,7 @@ const BoardTestSeries = () => {
   }
 
 
-  const getTests = async() => {
+  const getTests = async(token, user) => {
 
     
 
@@ -99,7 +99,7 @@ const BoardTestSeries = () => {
       
       const response = await axios.get(`${API_CONFIG.BASE_URL}/api/exams`, {        
           headers: {
-            'Authorization': `Bearer ${TOKENS.accessToken}`,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json', // Assuming you're sending JSON data
           }
       });
@@ -119,7 +119,9 @@ const BoardTestSeries = () => {
     }
   }
   useEffect(() => {
-    getTests();
+    const token =  TOKENS.accessToken;
+    const user = TOKENS.user;
+    getTests(token, user);
   },[]);
 
 

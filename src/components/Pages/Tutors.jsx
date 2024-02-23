@@ -3,6 +3,7 @@ import Navbar from "../NavBar";
 
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import API_CONFIG from "../../Config/apiLink";
 import Loader from "../../Layout/Loader";
 
 const Tutors = () => {
@@ -55,9 +56,9 @@ const Tutors = () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
-          const apiURL = import.meta.env.VITE_REACT_APP_API_URL;
+          //const apiURL = import.meta.env.VITE_REACT_APP_API_URL;
           //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
-          const response = await axios.get(`${apiURL}/api/teacher-profile`, {
+          const response = await axios.get(`${API_CONFIG.BASE_URL}/api/teacher-profile`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
               'Content-Type': 'application/json', // Assuming you're sending JSON data

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import API_CONFIG from '../../Config/apiLink';
 import Loader from '../../Layout/Loader';
 
 const SignUp = () => {
@@ -49,14 +50,14 @@ const SignUp = () => {
 
     try {
           //const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
-          const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+          //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
 
 
       const ApiUrl =
         selectedButton === 'students'
-          ? `${apiURL}/api/student-register`
+          ? `${API_CONFIG.BASE_URL}/api/student-register`
           : selectedButton === 'teachers'
-          ? `${apiURL}/api/teacher-register`
+          ? `${API_CONFIG.BASE_URL}/api/teacher-register`
           : '';
 
       const response = await axios.post(ApiUrl, {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Navbar from "../NavBar";
 
+import API_CONFIG from "../../Config/apiLink";
 import Loader from "../../Layout/Loader";
 
 const Profile = () => {
@@ -23,8 +24,8 @@ const Profile = () => {
         const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
          // const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
-          const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
-          const response = await axios.get(`${apiURL}/api/student-profile`, {
+          //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+          const response = await axios.get(`${API_CONFIG.BASE_URL}/api/student-profile`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
               'Content-Type': 'application/json', // Assuming you're sending JSON data

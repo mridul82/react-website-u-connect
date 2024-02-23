@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import API_CONFIG from '../../Config/apiLink';
 import Loader from '../../Layout/Loader';
 import Footer from '../Footer';
 import Navbar from '../NavBar';
@@ -72,9 +73,9 @@ const TeacherProfileForm = () => {
     };
 
     try {
-      const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
+      //const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
       //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
-      const response = await axios.post(`${apiURL}/api/teacher-profile`, formData, config);
+      const response = await axios.post(`${API_CONFIG.BASE_URL}/api/teacher-profile`, formData, config);
       
       if(response.status === 200) {
         setLoading(false);

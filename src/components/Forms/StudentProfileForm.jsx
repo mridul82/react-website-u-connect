@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import API_CONFIG from '../../Config/apiLink';
 import Loader from '../../Layout/Loader';
 import Footer from '../Footer';
 import Navbar from '../NavBar';
@@ -106,8 +107,8 @@ const StudentProfileForm = () => {
     try {
       
     //const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
-    const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
-      const response = await axios.post(`${apiURL}/api/student-profile`, formData, config);
+    //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+      const response = await axios.post(`${API_CONFIG.BASE_URL}/api/student-profile`, formData, config);
       
       if(response.status === 200) {
         setLoading(false);

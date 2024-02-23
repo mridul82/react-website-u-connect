@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../Layout/Loader";
 
 import { ToastContainer, toast } from 'react-toastify';
+import API_CONFIG from "../../Config/apiLink";
 import ForgetPasswordForm from "../Forms/ForgetPasswordForm";
 
 
@@ -50,14 +51,14 @@ const handlePasswordChange = (e) => {
       try {
 
        // const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
-        const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
+        //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
         //console.log(apiURL);
              
         const ApiUrl =
         selectedButton === 'students'
-          ? `${apiURL}/api/student-login`
+          ? `${API_CONFIG.BASE_URL}/api/student-login`
           : selectedButton === 'teachers'
-          ? `${apiURL}/api/teacher-login`
+          ? `${API_CONFIG.BASE_URL}/api/teacher-login`
           : '';
 
     
