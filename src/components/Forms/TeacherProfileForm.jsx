@@ -118,10 +118,10 @@ const TeacherProfileForm = () => {
           </div>
           <div className="md:w-1/3 px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="title">
-              What App Number*
+              WhatsApp Number*
             </label>
             <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" 
-            id="title" type="text" placeholder="What App Number" value={number} onChange={(e) => setNumber(e.target.value)}  />
+            id="title" type="text" placeholder="WhatsApp Number" value={number} onChange={(e) => setNumber(e.target.value)}  />
           </div>
           <div className="md:w-1/3 px-3">
             <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" htmlFor="title">
@@ -223,10 +223,22 @@ const TeacherProfileForm = () => {
               value={preferredSubject} onChange={(e) => setPreferredSubject(e.target.value)}
               >
                 <option value="">Select an Option</option>
-                <option value="Maths">Maths</option>
-                <option value="English">English</option>
-                <option value="Science">Science</option>
-                <option value="SSc">Social Science</option>                
+                <option value="Maths_basic">MATHS(BASIC)</option>
+                <option value="Maths_standard">MATHS(STANDARD)</option>
+                <option value="English">ENGLISH</option>
+                <option value="Science">SCIENCE</option>
+                <option value="SSc">SOCIAL SCIENCE</option> 
+                <option value="physics">PHYSICS</option>  
+                <option value="chemistry">CHEMISTRY</option>  
+                <option value="biology">BIOLOGY</option> 
+                <option value="cs_ip">CS/IP</option> 
+                <option value="history">HISTORY</option>  
+                <option value="sociology">SOCIOLOGY</option> 
+                <option value="geography">GEOGRAPHY</option> 
+                <option value="psychology">PSYCHOLOGY</option> 
+                <option value="accountancy">ACCOUNTANCY</option> 
+                <option value="bs">BUSINESS STUDIES</option> 
+                <option value="entre">ENTREPRENEURSHIP</option> 
               </select>
             
             </div>

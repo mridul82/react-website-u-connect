@@ -5,8 +5,11 @@ import TOKENS from "../../Config/localStorage";
 import Loader from "../../Layout/Loader";
 import PageHeading from "../../Layout/PageHeading";
 import Cart from "../Cart";
+import ExamSummary from "../ExamSummary";
 import Footer from "../Footer";
 import NavBar from "../NavBar";
+
+
 
 const BoardTestSeries = () => {
 
@@ -16,8 +19,19 @@ const BoardTestSeries = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [cartExams, setcartExams] = useState([]);
 
+  
+
 
   const handleAddTest = ({test}) => { 
+
+    if(window.innerWidth <= 768) {
+
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+
+    }
 
     // Check if the exam is already in the cartExams array//
   const isExamAlreadyAdded = cartExams.some((exam) => exam.id === test.id);
@@ -40,6 +54,16 @@ const BoardTestSeries = () => {
   //delete test
 
   const handleDeleteTest = (testId) => {
+
+    
+    if(window.innerWidth <= 768) {
+
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+
+    }
     // Filter out the test with the provided testId
     const updatedExams = cartExams.filter((exam) => exam.id !== testId);
     
@@ -51,6 +75,8 @@ const BoardTestSeries = () => {
  
 
   const handleTabChange = (test) => {
+
+      
     
    // getTests();
    const clickedIndex = examName.findIndex((exam) => exam.test_series_name === test);
@@ -98,7 +124,7 @@ const BoardTestSeries = () => {
 
 
   useEffect(() => {
-    console.log(cartExams);
+    //console.log(cartExams);
   }, [cartExams]);
 
 
@@ -107,8 +133,10 @@ const BoardTestSeries = () => {
       <NavBar />
 
       <div className="container mx-auto px-4 lg:px-8 py-6 mt-5 mb-5">
+     
         
         <PageHeading title="Our Latest Test Series" />
+        <ExamSummary />
 
         {isLoading ? (
         <Loader />
@@ -134,9 +162,9 @@ const BoardTestSeries = () => {
         
         
       </div>  
-      <div className="md:flex md:justify-between ">
+      <div className="md:flex md:justify-between">
       
-      <div className="md:w-2/3 w-full md:flex-col" >
+      <div className="md:w-2/3 w-full md:flex-col md:p-5" >
 {examData.map(exam => (
          
 
@@ -150,11 +178,11 @@ const BoardTestSeries = () => {
                {/* Buttons on the extreme right */}
                <div className="flex flex-row items-end">
                 
-                 <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" onClick={() => handleAddTest({ test: exam })}>
+                 <button className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded m-1" onClick={() => handleAddTest({ test: exam })}>
                  Add Test
                  </button>
                  <button 
-  className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"  onClick={() => handleDeleteTest(exam.id)}>  Delete Test </button>
+  className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded m-1"  onClick={() => handleDeleteTest(exam.id)}>  Delete Test </button>
                </div>
              </div>test_series_name
              <div className="flex items-center justify-between font-light">
