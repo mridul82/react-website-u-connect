@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import API_CONFIG from "../Config/apiLink";
-import TOKENS from "../Config/localStorage";
 
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../Layout/Loader";
 
@@ -12,6 +12,8 @@ const Cart = ({ cartExams }) => {
   const [selectedTime, setSelectedTime] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   // Handler functions to update the selected date and time
   const handleDateChange = (e) => {
@@ -27,7 +29,7 @@ const Cart = ({ cartExams }) => {
     // You can perform any action with the selected date and time here
     setLoading(true);
 
-    const user = TOKENS.user;
+    const user = JSON.parse(localStorage.getItem("user"));
     //console.log(user);
     //console.log({cartExams, totalPrice, user, selectedDate, selectedTime});
     const postData = {
@@ -44,12 +46,13 @@ const Cart = ({ cartExams }) => {
         postData,
         {
           headers: {
-            Authorization: `Bearer ${TOKENS.accessToken}`,
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             "Content-Type": "application/json", // Assuming you're sending JSON data
           },
         }
       );
       if (response.status == 200) {
+        navigate('/exam-payment');
         console.log(response.data);
       }
     } catch (error) {

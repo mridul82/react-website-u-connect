@@ -15,6 +15,10 @@ const Profile = () => {
 
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState(null);
+  const [paymentExists, setPaymentExistes] = useState(false);
+
+
+ 
   
   
   useEffect(() => {
@@ -32,7 +36,10 @@ const Profile = () => {
             }
           });
           if (response.status === 200) {
+            console.log(accessToken);
+            console.log(response.data);
             setProfileData(response.data);
+            setPaymentExistes(response.data['paymentExists'])
           }
         }
       } catch (error) {
@@ -45,53 +52,6 @@ const Profile = () => {
     getProfile();
   }, []);
 
-
-//   useEffect(() => {
-//     const accessToken = localStorage.getItem("accessToken");
-//     console.log(accessToken);
-//     if (accessToken) {
-//       
-//         getProfile();
-//       
-//     }
-//   }, []);
-// 
-//   const getProfile = async () => {
-//     setLoading(true);
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:8000/api/student-profile",{
-//           headers: {
-//             'Authorization': `Bearer ${accessToken}`,
-//             'Content-Type': 'application/json', // Assuming you're sending form data
-//           }
-//         }
-//        
-//       );
-//       console.log(response);
-//       if (response.status === 200) {
-// 
-//           setProfileData(response.data);        
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     } finally {
-//       setLoading(false); // Set loading back to false after data fetching (whether success or failure)
-//     }
-//   };
-
-  // const onAddProfile = () => {
-  //   console.log(userType);
-  //   if (userType === "students") {
-  //     navigate("/add-student-profile");
-  //   } else if (userType === "teachers") {`1
-  //     navigate("/add-teacher-profile");
-  //   } else {
-  //     return null; // Return null or handle other cases if needed
-  //   }
-  // };
-
- // console.log(profileData);
 
   return(
     <>
@@ -166,8 +126,30 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-6 md:max-w-8xl mx-auto mt-10 mb-10">
-                <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+              <div className="flex flex-wrap justify-center gap-6 md:max-auto mx-auto mt-10 mb-10">
+
+                
+              {paymentExists ? (
+                <Link to="/exam-payment">
+                <div className="max-w-sm w-full bg-red-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+    <div className="flex justify-between p-6">
+   <img src="icons/banknote-icon.svg" height={40} width={80} />
+
+     
+    </div>
+    <div className="p-6">
+      <p className="text-xl font-semibold mb-2">
+        Pay Amount:{" "}
+        <span className=" text-yellow-600">₹{profileData.profile.amount}</span>
+      </p>
+    </div>
+  </div>
+                </Link>
+  
+) : "" }
+
+               <Link>
+               <div className="max-w-sm w-full bg-green-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                   <div className="flex justify-between p-6">
                     <svg
                       viewBox="0 0 24 24"
@@ -181,12 +163,14 @@ const Profile = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Preferred Subjects :{" "}
-                      <span className="text-blue-500">
+                      <span className="text-yellow-600">
                         {profileData.profile.subjects}
                       </span>
                     </p>
                   </div>
                 </div>
+               </Link>
+                <Link>
                 <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                   <div className="flex justify-between p-6">
                     <svg
@@ -201,13 +185,15 @@ const Profile = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Preferred Tutor:{" "}
-                      <span className="text-blue-500">
+                      <span className="text-yellow-600">
                         {profileData.profile.tutor_gender}
                       </span>
                     </p>
                   </div>
                 </div>
-                <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                </Link>
+             <Link>
+             <div className="max-w-sm w-full bg-blue-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                   <div className="flex justify-between p-6">
                     <svg
                       viewBox="0 0 640 512"
@@ -219,13 +205,15 @@ const Profile = () => {
                   </div>
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
-                      Preferred Classes per month:{" "}
-                      <span className="text-blue-500">
+                      Classes per month:{" "}
+                      <span className="text-yellow-600">
                         {profileData.profile.no_of_classes}
                       </span>
                     </p>
                   </div>
                 </div>
+             </Link>
+           
               </div>
           </>
         ) :

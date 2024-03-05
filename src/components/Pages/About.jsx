@@ -6,6 +6,7 @@ const About = () => {
   return (
     <div>
       <Navbar />
+     
       <div name="support" className="w-full">
     <div className="w-full h-[750px] bg-[#539165] absolute">
       

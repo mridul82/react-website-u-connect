@@ -5,7 +5,6 @@ import TOKENS from "../../Config/localStorage";
 import Loader from "../../Layout/Loader";
 import PageHeading from "../../Layout/PageHeading";
 import Cart from "../Cart";
-import ExamSummary from "../ExamSummary";
 import Footer from "../Footer";
 import NavBar from "../NavBar";
 
@@ -93,11 +92,11 @@ const BoardTestSeries = () => {
   const getTests = async(token, user) => {
 
     
-
+    const $user_id = user.id;
    //console.log(`${TOKENS.accessToken}`);
     try {
       
-      const response = await axios.get(`${API_CONFIG.BASE_URL}/api/exams`, {        
+      const response = await axios.get(`${API_CONFIG.BASE_URL}/api/exams/${$user_id}`, {        
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json', // Assuming you're sending JSON data
@@ -109,9 +108,9 @@ const BoardTestSeries = () => {
         setExamName(response.data['tests']);
         
         //console.log(examName);
-        setTimeout(() => {
+       
           setIsLoading(false); // Set loading to false after a delay (simulating data loading)
-        }, 2000);
+        
         
       }
     } catch (error) {
@@ -138,8 +137,7 @@ const BoardTestSeries = () => {
      
         
         <PageHeading title="Our Latest Test Series" />
-        <ExamSummary />
-
+      
         {isLoading ? (
         <Loader />
       ) : (
@@ -186,7 +184,7 @@ const BoardTestSeries = () => {
                  <button 
   className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded m-1"  onClick={() => handleDeleteTest(exam.id)}>  Delete Test </button>
                </div>
-             </div>test_series_name
+             </div>{exam.test_series_name}
              <div className="flex items-center justify-between font-light">
                <span className="mr-2">Price: ₹{exam.test_price}</span>
                <span className="mr-2">Subject:{exam.subjects}</span>

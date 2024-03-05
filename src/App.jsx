@@ -7,7 +7,8 @@ import SliderComponent from './components/SliderComponent'
 import { ToastContainer, toast } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
-import LandingModal from './components/Modals/LandingModal'
+// import LandingModal from './components/Modals/LandingModal'
+import Teachers from './components/Teachers'
 import Test from './components/Test'
 
 
@@ -25,11 +26,11 @@ function App() {
     <Navbar />
     
     <main>
-<LandingModal />
+{/* <LandingModal /> */}
         
     <SliderComponent /> 
     <Test />
-    {/* <Teachers /> */}
+    <Teachers />
     <Services />
     </main>
      
