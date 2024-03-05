@@ -26,7 +26,7 @@ const Teachers = () => {
           })
           if (response.status === 200) {
            
-            //console.log(response.data);
+            console.log(response.data['teachers']);
             setTeachers(response.data['teachers']);
             setLoading(false);
            
