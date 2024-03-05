@@ -45,29 +45,53 @@ const Teachers = () => {
 
 
   return (
-    <div className=" min-h-screen flex flex-col items-center md:px-3 px-5 ">
-      <Heading title1="Our" title2="Teacher" />
+//     <div className=" min-h-screen flex flex-col items-center md:px-3 px-5 ">
+//       <Heading title1="Our" title2="Teacher" />
+// 
+//       <div className=" flex flex-wrap justify-center mt-6">
+//         <div className="flex md:flex-row flex-col items-center justify-between gap-4 mb-3">
+//         {Array.isArray(teachers) && teachers.length > 0 && (
+//   teachers.map((teacher, index) => (
+//     teacher.profile && teacher.profile.length > 0 && teacher.profile[0].profile_pic && (
+//       <TeacherCard 
+//         key={index} 
+//         img={`${API_CONFIG.BASE_URL}/${teacher.profile[0].profile_pic}`} 
+//         title={teacher.profile[0].register_id} 
+//         specialisation={teacher.profile[0].specialisation}
+//         preferred_subject={teacher.profile[0].preferred_subject}
+//         highest_qualification={teacher.profile[0].highest_qualification}
+//       />
+//     )
+//   ))
+// )}
+//        </div>
+//         
+//       </div>
+//     </div>
 
-      <div className=" flex flex-wrap justify-center mt-6">
-        <div className="flex md:flex-row flex-col items-center justify-between gap-4 mb-3">
-        {Array.isArray(teachers) && teachers.length > 0 && (
-      teachers.map((teacher, index) => (
-        
-      <TeacherCard 
-       key={index} 
-       img={`${API_CONFIG.BASE_URL}/${teacher.profile[0].profile_pic}`} 
-       title={teacher.profile[0].register_id} 
-       specialisation = {teacher.profile[0].specialisation}
-       preferred_subject = {teacher.profile[0].preferred_subject}
-       highest_qualification = {teacher.profile[0].highest_qualification}
-     />
-       
-      ))
-    )}
-       </div>
-        
-      </div>
-    </div>
+<div className="min-h-screen flex flex-col items-center md:px-3 px-5">
+  <Heading title1="Our" title2="Teacher" />
+
+  <div className="flex flex-wrap justify-center mt-2">
+    
+      {Array.isArray(teachers) && teachers.length > 0 && (
+        teachers.map((teacher, index) => (
+          teacher.profile && teacher.profile.length > 0 && teacher.profile[0].profile_pic && (
+            <TeacherCard 
+              key={index} 
+              img={`${API_CONFIG.BASE_URL}/${teacher.profile[0].profile_pic}`} 
+              title={teacher.profile[0].register_id} 
+              specialisation={teacher.profile[0].specialisation}
+              preferred_subject={teacher.profile[0].preferred_subject}
+              highest_qualification={teacher.profile[0].highest_qualification}
+            />
+          )
+        ))
+      )}
+   
+  </div>
+</div>
+
   )
 }
 
