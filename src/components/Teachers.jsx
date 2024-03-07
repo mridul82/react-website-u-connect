@@ -18,12 +18,7 @@ const Teachers = () => {
         const token = TOKENS.accessToken;
         //console.log(token);
         if(token) {
-          const response = await axios.get(`${API_CONFIG.BASE_URL}/api/get-teachers`,  {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json', // Assuming you're sending JSON data
-            }
-          })
+          const response = await axios.get(`${API_CONFIG.BASE_URL}/api/get-teachers`)
           if (response.status === 200) {
            
             console.log(response.data['teachers']);
