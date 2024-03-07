@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import API_CONFIG from '../Config/apiLink';
-import TOKENS from '../Config/localStorage';
 
 
 const ExamSummary = () => {
@@ -11,11 +10,11 @@ const ExamSummary = () => {
     useEffect (() => {
         //fetch exam summary
         try {
-            const user = TOKENS.user;
+            const user = JSON.parse(localStorage.getItem("user"));
             console.log(`${API_CONFIG.BASE_URL}/api/exam-summary/${user.id}`)
             axios.get(`${API_CONFIG.BASE_URL}/api/exam-summary/${user.id}`, {        
                 headers: {
-                  'Authorization': `Bearer ${TOKENS.accessToken}`,
+                  'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
                   'Content-Type': 'application/json', // Assuming you're sending JSON data
                 }
             })

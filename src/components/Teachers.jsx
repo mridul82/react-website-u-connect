@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import API_CONFIG from '../Config/apiLink';
-import TOKENS from '../Config/localStorage';
 import Heading from '../Layout/Heading';
 import LoaderSkeleton from '../Layout/LoaderSkeleton';
 import TeacherCard from '../Layout/TeacherCard';
@@ -10,33 +9,32 @@ const Teachers = () => {
   const [loading, setLoading] = useState(false);
   const [teachers, setTeachers] = useState([]);
 
-  useEffect(()=>{
+  const getTeachers = async() => {
 
-    const getTeachers = async() => {
-
-      setLoading(true);
-      try {
-        const token = TOKENS.accessToken;
-        //console.log(token);
-        if(token) {
-          const response = await axios.get(`${API_CONFIG.BASE_URL}/api/get-teachers`)
-          if (response.status === 200) {
-           
-            //console.log(response.data['teachers']);
-            setTeachers(response.data['teachers']);
-            setLoading(false);
-           
-          }
-        }
-        
-      } catch (error) {
-        
-      }finally {
-        setLoading(false); // Set loading back to false after login attempt
-      }
-
+    setLoading(true);
+    try {
+      //const token = TOKENS.accessToken;
+      //console.log(token);
+     
+        const response = await axios.get(`${API_CONFIG.BASE_URL}/api/get-teachers`)
+        if (response.status === 200) {
+         
+          console.log(response.data['teachers']);
+          setTeachers(response.data['teachers']);
+          setLoading(false);
+         
+        } 
+      
+    } catch (error) {
+      console.log(error);
+    }finally {
+      setLoading(false); // Set loading back to false after login attempt
     }
-   
+
+  }
+ 
+
+  useEffect(()=>{   
 
     getTeachers();
   },[]);
