@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import API_CONFIG from "../../Config/apiLink";
-import TOKENS from "../../Config/localStorage";
 import Loader from "../../Layout/Loader";
 import PageHeading from "../../Layout/PageHeading";
 import Cart from "../Cart";
@@ -118,8 +117,8 @@ const BoardTestSeries = () => {
     }
   }
   useEffect(() => {
-    const token =  TOKENS.accessToken;
-    const user = TOKENS.user;
+    const token =  localStorage.getItem("accessToken");
+    const user = JSON.parse(localStorage.getItem("user"));
     getTests(token, user);
   },[]);
 

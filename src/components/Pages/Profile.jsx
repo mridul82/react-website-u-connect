@@ -16,6 +16,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [paymentExists, setPaymentExistes] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(false);
 
 
  
@@ -23,9 +24,17 @@ const Profile = () => {
   
   useEffect(() => {
     const getProfile = async () => {
+      const storedPaymentStatus = localStorage.getItem("paymentStatus");
+      console.log(storedPaymentStatus);
+      if(storedPaymentStatus === 'true') {
+        setPaymentStatus(true);
+        console.log(paymentStatus);
+      }
+      //console.log(paymentStatus);
       setLoading(true);
       try {
         const accessToken = localStorage.getItem("accessToken");
+     
         if (accessToken) {
          // const apiURL = import.meta.env.VITE_REACT_APP_API_URL; 
           //const apiURL = import.meta.env.VITE_REACT_APP_LOCAL_API_URL;
@@ -40,6 +49,11 @@ const Profile = () => {
             console.log(response.data);
             setProfileData(response.data);
             setPaymentExistes(response.data['paymentExists'])
+            setPaymentStatus(response.data['paymentStatus']);
+            console.log(paymentStatus);
+            if(response.data['paymentStatus'] === true) {
+              localStorage.setItem("paymentStatus", true);
+            }
           }
         }
       } catch (error) {
@@ -147,6 +161,27 @@ const Profile = () => {
                 </Link>
   
 ) : "" }
+
+{paymentStatus ? (
+                <Link to="/exam-payment">
+                <div className="max-w-sm w-full bg-red-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+    <div className="flex justify-between p-6">
+   <img src="icons/banknote-icon.svg" height={40} width={80} />
+
+     
+    </div>
+    <div className="p-6">
+      <p className="text-xl font-semibold mb-2">
+        Payment is in Process...
+        {/* <span className=" text-yellow-600">₹{profileData.profile.amount}</span> */}
+      </p>
+    </div>
+  </div>
+                </Link>
+  
+) : "" }
+
+
 
                <Link>
                <div className="max-w-sm w-full bg-green-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">

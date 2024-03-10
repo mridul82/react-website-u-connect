@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import API_CONFIG from '../Config/apiLink';
+import LoaderSkeleton from '../Layout/LoaderSkeleton';
 
 
 const ExamSummary = () => {
     const [examSummary, setExamSummary] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect (() => {
         //fetch exam summary
+        setLoading(true);
         try {
             const user = JSON.parse(localStorage.getItem("user"));
-            console.log(`${API_CONFIG.BASE_URL}/api/exam-summary/${user.id}`)
+            //console.log(`${API_CONFIG.BASE_URL}/api/exam-summary/${user.id}`)
             axios.get(`${API_CONFIG.BASE_URL}/api/exam-summary/${user.id}`, {        
                 headers: {
                   'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
@@ -19,7 +22,7 @@ const ExamSummary = () => {
                 }
             })
             .then(response => {
-                console.log(response.data);
+                setLoading(false);
                 setExamSummary(response.data['data']);
                 setTotalPrice(response.data['total_price']);
                // console.log(response.data['total_price'])
@@ -27,13 +30,18 @@ const ExamSummary = () => {
             
         } catch (error) {
             console.error('Error fetching exam summary:', error);
+        }finally{
+          setLoading(false);
         }
       
     }, []);
   return ( 
     
      <>
-     
+
+     {loading ? (
+      <LoaderSkeleton />
+     ) : (
       <div className="md:w-2/3 w-full md:flex-col md:p-5">
    
    <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-4">
@@ -50,10 +58,13 @@ const ExamSummary = () => {
      ))}
      {/* Total price section */}
      <div className="text-left mt-4">
-       <p className="text-lg font-bold text-purple-600">Total Price: ₹{totalPrice}</p>
+       <p className="text-lg font-bold text-purple-600">Total Price: <span style={{color: "red", fontSize: "25px"}}>₹{totalPrice}</span> </p>
      </div>
    </div>
  </div>
+     )}
+     
+
      </>
       
    

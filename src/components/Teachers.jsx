@@ -47,7 +47,7 @@ const Teachers = () => {
     <LoaderSkeleton />
   ) : (
     <div className=" flex flex-col items-center md:px-3 px-5">
-    <Heading title1="Our Approved" title2="Teacher" />
+    <Heading title1="Our Verified" title2="Tutors" />
     
         <div className="flex flex-wrap justify-center mt-2">
       
