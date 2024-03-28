@@ -17,6 +17,7 @@ const Profile = () => {
   const [profileData, setProfileData] = useState(null);
   const [paymentExists, setPaymentExistes] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(false);
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
 
  
@@ -25,7 +26,7 @@ const Profile = () => {
   useEffect(() => {
     const getProfile = async () => {
       const storedPaymentStatus = localStorage.getItem("paymentStatus");
-      console.log(storedPaymentStatus);
+      //console.log(storedPaymentStatus);
       if(storedPaymentStatus === 'true') {
         setPaymentStatus(true);
         console.log(paymentStatus);
@@ -45,17 +46,25 @@ const Profile = () => {
             }
           });
           if (response.status === 200) {
-            console.log(accessToken);
-            console.log(response.data);
+           // console.log(accessToken);
+           console.log(response.data['paymentStatus']['payment_status']);
             setProfileData(response.data);
             setPaymentExistes(response.data['paymentExists'])
-            setPaymentStatus(response.data['paymentStatus']);
-            console.log(paymentStatus);
-            if(response.data['paymentStatus'] === true) {
+            setPaymentStatus(response.data['paymentStatus']['payment_status']);
+            //console.log(paymentStatus);
+            if(response.data['paymentStatus']['payment_status'] === 1) {
               localStorage.setItem("paymentStatus", true);
+              localStorage.setItem("paymentComplete", false);
+              setPaymentComplete(false);
+            } else if(response.data['paymentStatus']['payment_status'] === 2) {
+              localStorage.setItem("paymentStatus", false);
+              localStorage.setItem("paymentComplete", true);
+              setPaymentComplete(true);
+              console.log(paymentStatus);
+              console.log(paymentComplete);
             }
           }
-        }
+        }                    
       } catch (error) {
         console.log(error);
       } finally {
@@ -145,7 +154,7 @@ const Profile = () => {
                 
               {paymentExists ? (
                 <Link to="/exam-payment">
-                <div className="max-w-sm w-full bg-red-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div className="max-w-sm w-full bg-red-400 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
     <div className="flex justify-between p-6">
    <img src="icons/banknote-icon.svg" height={40} width={80} />
 
@@ -154,7 +163,7 @@ const Profile = () => {
     <div className="p-6">
       <p className="text-xl font-semibold mb-2">
         Pay Amount:{" "}
-        <span className=" text-yellow-600">₹{profileData.profile.amount}</span>
+        <span className=" text-black-600">₹{profileData.profile.amount}</span>
       </p>
     </div>
   </div>
@@ -162,9 +171,9 @@ const Profile = () => {
   
 ) : "" }
 
-{paymentStatus ? (
+{paymentStatus === true ? (
                 <Link to="/exam-payment">
-                <div className="max-w-sm w-full bg-red-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div className="max-w-sm w-full bg-red-400 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
     <div className="flex justify-between p-6">
    <img src="icons/banknote-icon.svg" height={40} width={80} />
 
@@ -179,12 +188,62 @@ const Profile = () => {
   </div>
                 </Link>
   
-) : "" }
+) : 
+
+paymentComplete === true  ?  (
+<>
+
+  <div className="max-w-sm w-full bg-yellow-400 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+<div className="flex justify-between p-6">
+<img src="icons/banknote-icon.svg" height={40} width={80} />
 
 
+</div>
+<Link to="/exam-payment">
+<div className="p-6">
+<p className="text-xl font-semibold mb-2">
+Payment is Complete
+{/* <span className=" text-yellow-600">₹{profileData.profile.amount}</span> */}
+</p>
+</div>
+</Link>
+</div>
+ 
+
+<div className="max-w-sm w-full bg-green-400 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+<div className="flex justify-between p-6">
+<img src="icons/banknote-icon.svg" height={40} width={80} />
+
+
+</div>
+<Link to="/exam">
+<div className="p-6">
+<p className="text-xl font-semibold mb-2">
+Start Your Exam
+{/* <span className=" text-yellow-600">₹{profileData.profile.amount}</span> */}
+</p>
+</div>
+</Link>
+
+</div>
+
+
+
+</>
+
+
+  
+
+) : ""
+
+}
+
+</div>
+
+<div className="flex flex-wrap justify-center gap-6 md:max-auto mx-auto mt-10 mb-10">
 
                <Link>
-               <div className="max-w-sm w-full bg-green-800 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+               <div className="max-w-sm w-full bg-green-600 text-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                   <div className="flex justify-between p-6">
                     <svg
                       viewBox="0 0 24 24"
@@ -198,7 +257,7 @@ const Profile = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Preferred Subjects :{" "}
-                      <span className="text-yellow-600">
+                      <span className="text-black-600">
                         {profileData.profile.subjects}
                       </span>
                     </p>
@@ -220,7 +279,7 @@ const Profile = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Preferred Tutor:{" "}
-                      <span className="text-yellow-600">
+                      <span className="text-black-600">
                         {profileData.profile.tutor_gender}
                       </span>
                     </p>
@@ -241,7 +300,7 @@ const Profile = () => {
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
                       Classes per month:{" "}
-                      <span className="text-yellow-600">
+                      <span className="text-black-600">
                         {profileData.profile.no_of_classes}
                       </span>
                     </p>

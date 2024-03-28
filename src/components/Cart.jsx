@@ -40,6 +40,8 @@ const Cart = ({ cartExams }) => {
       selectedTime,
     };
 
+//     console.log(postData);
+// console.log(`Bearer ${localStorage.getItem("accessToken")}`);
     try {
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/api/add-exam`,
@@ -56,6 +58,7 @@ const Cart = ({ cartExams }) => {
         console.log(response.data);
       }
     } catch (error) {
+      console.log(error);
       if (error.response.status === 400) {
         
         toast.error(error.response.data.msg, {

@@ -103,10 +103,12 @@ const BoardTestSeries = () => {
       });
       if (response.status === 200) {
         
+        console.log(response.data);
+        
         setExamData(response.data['exams']);
         setExamName(response.data['tests']);
         
-        //console.log(examName);
+        console.log(response.data['exams']);
        
           setIsLoading(false); // Set loading to false after a delay (simulating data loading)
         
