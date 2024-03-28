@@ -49,20 +49,24 @@ const Profile = () => {
            // console.log(accessToken);
            console.log(response.data['paymentStatus']['payment_status']);
             setProfileData(response.data);
-            setPaymentExistes(response.data['paymentExists'])
-            setPaymentStatus(response.data['paymentStatus']['payment_status']);
-            //console.log(paymentStatus);
-            if(response.data['paymentStatus']['payment_status'] === 1) {
-              localStorage.setItem("paymentStatus", true);
-              localStorage.setItem("paymentComplete", false);
-              setPaymentComplete(false);
-            } else if(response.data['paymentStatus']['payment_status'] === 2) {
-              localStorage.setItem("paymentStatus", false);
-              localStorage.setItem("paymentComplete", true);
-              setPaymentComplete(true);
-              console.log(paymentStatus);
-              console.log(paymentComplete);
+            if(response.data['paymentStatus']['payment_status'] != null && response.data['paymentExists'] != null) {
+              setPaymentExistes(response.data['paymentExists'])
+              setPaymentStatus(response.data['paymentStatus']['payment_status']);
+              //console.log(paymentStatus);
+              if(response.data['paymentStatus']['payment_status'] === 1) {
+                localStorage.setItem("paymentStatus", true);
+                localStorage.setItem("paymentComplete", false);
+                setPaymentComplete(false);
+              } else if(response.data['paymentStatus']['payment_status'] === 2) {
+                localStorage.setItem("paymentStatus", false);
+                localStorage.setItem("paymentComplete", true);
+                setPaymentComplete(true);
+                console.log(paymentStatus);
+                console.log(paymentComplete);
+              }
+
             }
+         
           }
         }                    
       } catch (error) {
