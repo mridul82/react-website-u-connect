@@ -52,21 +52,23 @@ const Profile = () => {
             setProfileData(response.data);
            
               setPaymentExistes(response.data['paymentExists'])
-              setPaymentStatus(response.data['paymentStatus']['payment_status']);
+              // setPaymentStatus(response.data['paymentStatus']['payment_status']);
               //console.log(paymentStatus);
               if(response.data['paymentStatus']['payment_status'] === 1) {
                 localStorage.setItem("paymentStatus", true);
                 localStorage.setItem("paymentComplete", false);
+                setPaymentStatus(true);
                 setPaymentComplete(false);
               } else if(response.data['paymentStatus']['payment_status'] === 2) {
                 localStorage.setItem("paymentStatus", false);
                 localStorage.setItem("paymentComplete", true);
                 setPaymentComplete(true);
-                console.log(paymentStatus);
-                console.log(paymentComplete);
+                setPaymentStatus(false);
+                
               }
-
-            
+            console.log(paymentExists);
+            console.log(paymentStatus);
+            console.log(paymentComplete);
          
           }
         }                    
