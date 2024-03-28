@@ -46,10 +46,11 @@ const Profile = () => {
             }
           });
           if (response.status === 200) {
-           // console.log(accessToken);
+            console.log(accessToken);
+            console.log(response.data);
            console.log(response.data['paymentStatus']['payment_status']);
             setProfileData(response.data);
-            if(response.data['paymentStatus']['payment_status'] != null && response.data['paymentExists'] != null) {
+           
               setPaymentExistes(response.data['paymentExists'])
               setPaymentStatus(response.data['paymentStatus']['payment_status']);
               //console.log(paymentStatus);
@@ -65,7 +66,7 @@ const Profile = () => {
                 console.log(paymentComplete);
               }
 
-            }
+            
          
           }
         }                    
