@@ -6,7 +6,7 @@ import Footer from "../Footer";
 
 import Loader from "../../Layout/Loader";
 import PaymentProcessModal from "../Modals/PaymentProcessModal";
-import PaymentCompleteModal from "../Modals/paymentCompleteModal";
+import TransactionComplete from "../Modals/TransactionComplete";
 import NavBar from "../NavBar";
 
 const ExamPayment = () => {
@@ -188,7 +188,7 @@ const ExamPayment = () => {
                     <>
                      <div className="flex justify-center space-x-4 mt-4">
 
-                    <PaymentCompleteModal />
+                   <TransactionComplete />
                           <button
                     className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
                     onClick={handlePayment}
