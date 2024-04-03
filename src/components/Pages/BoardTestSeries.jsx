@@ -92,7 +92,7 @@ const BoardTestSeries = () => {
 
     
     const $user_id = user.id;
-   //console.log(`${TOKENS.accessToken}`);
+   console.log(token);
     try {
       
       const response = await axios.get(`${API_CONFIG.BASE_URL}/api/exams/${$user_id}`, {        
