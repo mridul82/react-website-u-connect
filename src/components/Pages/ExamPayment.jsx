@@ -5,6 +5,8 @@ import ExamSummary from "../ExamSummary";
 import Footer from "../Footer";
 
 import Loader from "../../Layout/Loader";
+import PaymentProcessModal from "../Modals/PaymentProcessModal";
+import PaymentCompleteModal from "../Modals/paymentCompleteModal";
 import NavBar from "../NavBar";
 
 const ExamPayment = () => {
@@ -136,7 +138,9 @@ const ExamPayment = () => {
                 
 
                 {payment && localStorage.getItem("paymentStatus") ? (
+                  
                   <div className="flex justify-center space-x-4 mt-4">
+                    <PaymentProcessModal />
                     <button
                       className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
                       disabled
@@ -181,13 +185,21 @@ const ExamPayment = () => {
                   paymentComplete  ? 
 
                   (
+                    <>
+                     <div className="flex justify-center space-x-4 mt-4">
 
-                    <button
+                    <PaymentCompleteModal />
+                          <button
                     className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
                     onClick={handlePayment}
                   >
-                    Payment Complete!
+                    Payment Completed!
                   </button>
+                     </div>
+           
+                    </>
+
+              
                   ):
               
                 (
