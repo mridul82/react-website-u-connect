@@ -15,12 +15,12 @@ import Profile from './components/Pages/Profile.jsx';
 import Service from './components/Pages/Service.jsx';
 import Tutors from './components/Pages/Tutors.jsx';
 
-import Exam from './components/Exam.jsx';
 import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
 import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
 import BoardTestSeries from './components/Pages/BoardTestSeries.jsx';
 import ExamPayment from './components/Pages/ExamPayment.jsx';
 import FindTutor from './components/Pages/FindTutor.jsx';
+import PaidExams from './components/Pages/PaidExams.jsx';
 import RankBoosterTestSeries from './components/Pages/RankBoosterTestSeries.jsx';
 import TermsCondition from './components/Pages/TermsCondition.jsx';
 import TestSeries from './components/TestSeries.jsx';
@@ -97,8 +97,8 @@ element: <Profile />
     element: <ExamPayment />
   },
   {
-    path: '/exam',
-    element: <Exam />
+    path: '/exams',
+    element: <PaidExams />
   }
 ]);
 

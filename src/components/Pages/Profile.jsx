@@ -223,7 +223,7 @@ Payment is Complete
 
 
 </div>
-<Link to="/exam">
+<Link to="/exams">
 <div className="p-6">
 <p className="text-xl font-semibold mb-2">
 Start Your Exam
