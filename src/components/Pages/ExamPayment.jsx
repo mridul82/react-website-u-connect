@@ -6,7 +6,6 @@ import Footer from "../Footer";
 
 import Loader from "../../Layout/Loader";
 import PaymentProcessModal from "../Modals/PaymentProcessModal";
-import TransactionComplete from "../Modals/TransactionComplete";
 import NavBar from "../NavBar";
 
 const ExamPayment = () => {
@@ -30,15 +29,16 @@ const ExamPayment = () => {
         );
 
         if (response.status === 200) {
-          // console.log(response.data.data['payment_status']);
+         // console.log(response.data.data["exam"]["payment_status"]);
+          //console.log(response.data.data["exam"][0]["payment"]);
           const storedPaymentStatus = localStorage.getItem("paymentStatus");
-          //console.log(storedPaymentStatus);
-          if (response.data.data["payment_status"] === 2) {
+          
+          if (response.data.data["exam"]["payment_status"] === 2 && response.data.data["payment"] == 1) {
             localStorage.setItem("paymentStatus", false);
 
             setPayment(false);
             setPaymentComplete(true);
-          } else if (response.data.data["payment_status"] === 1) {
+          } else if (response.data.data["exam"]["payment_status"] === 1 && response.data.data["payment"] == 1) {
             localStorage.setItem("paymentStatus", true);
 
             setPayment(true);
@@ -94,9 +94,7 @@ const ExamPayment = () => {
 
  
 
-  useEffect(() => {
-    // handlePayment();
-  }, []);
+
 
   return (
     <>
@@ -188,7 +186,7 @@ const ExamPayment = () => {
                     <>
                      <div className="flex justify-center space-x-4 mt-4">
 
-                   <TransactionComplete />
+                   {/* <TransactionComplete /> */}
                           <button
                     className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
                     onClick={handlePayment}

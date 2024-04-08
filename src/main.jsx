@@ -15,6 +15,7 @@ import Profile from './components/Pages/Profile.jsx';
 import Service from './components/Pages/Service.jsx';
 import Tutors from './components/Pages/Tutors.jsx';
 
+import Exam from './components/Exam.jsx';
 import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
 import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
 import BoardTestSeries from './components/Pages/BoardTestSeries.jsx';
@@ -99,6 +100,10 @@ element: <Profile />
   {
     path: '/exams',
     element: <PaidExams />
+  },
+  {
+    path: '/exam',
+    element: <Exam />
   }
 ]);
 

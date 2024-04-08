@@ -1,6 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const PaymentProcessModal = () => {
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
@@ -24,11 +30,9 @@ const PaymentProcessModal = () => {
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               type="button"
-              onClick={() => {
-                // Handle any necessary actions on button click
-              }}
+              onClick={handleRefresh}
             >
-              Close
+              Refresh
             </button>
           </div>
         </div>

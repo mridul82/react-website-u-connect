@@ -11,7 +11,7 @@ const PaidExams = () => {
     <NavBar />
     <div className='flex items-center justify-center'>
        
-        <ExamSummary showTimer={true} />
+        <ExamSummary showTimer={true} payment={true} />
        
     
     </div>
