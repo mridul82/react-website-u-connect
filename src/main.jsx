@@ -103,8 +103,8 @@ element: <Profile />
   },
   {
     path: '/exam',
-    element: <Exam />
-  }
+    element: <Exam />,
+ },
 ]);
 
 

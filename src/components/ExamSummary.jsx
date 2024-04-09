@@ -1,15 +1,23 @@
 import axios from "axios";
 import moment from "moment-timezone";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import API_CONFIG from "../Config/apiLink";
 import LoaderSkeleton from "../Layout/LoaderSkeleton";
 import CountDown from "./CountDown";
+
 
 const ExamSummary = ({ showTimer, payment }) => {
   const [examSummary, setExamSummary] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+
+  const handleClick = (examId) => {
+    navigate('/exam', { state: { examId } });
+  };
 
 
   const calculateTimeLeft = (examDate, examTime) => {
@@ -122,9 +130,11 @@ const ExamSummary = ({ showTimer, payment }) => {
                     (isExamInFuture ? (
                       <div className="mt-4">
                         
-                        <Link to="/exam" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        <button onClick={() => handleClick(exam.exam_id)}
+                                        
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                           Exam Start
-                        </Link>
+                        </button>
                       </div>
                     ) : (
                       <div className="mt-4">
