@@ -4,7 +4,8 @@ import API_CONFIG from "../../Config/apiLink";
 import ExamSummary from "../ExamSummary";
 import Footer from "../Footer";
 
-import Loader from "../../Layout/Loader";
+import LoaderSkeleton from "../../Layout/LoaderSkeleton";
+import LoadingText from "../../Layout/LoadingText";
 import PaymentProcessModal from "../Modals/PaymentProcessModal";
 import NavBar from "../NavBar";
 
@@ -60,8 +61,10 @@ const ExamPayment = () => {
     window.location.reload();
   };
 
-  const handlePayment = async () => {
+  const handlePayment = async (e) => {
+    e.preventDefault();
     setLoading(true);
+    console.log(loading);
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       console.log(localStorage.getItem("accessToken"));
@@ -73,9 +76,7 @@ const ExamPayment = () => {
           },
         })
         .then((response) => {
-          //setLoading(false);
-          // console.log(response.data.data);
-          // console.log(response.data.inserted_payments);
+          
           if (
             response.data.inserted_payments &&
             response.data.inserted_payments !== null
@@ -87,6 +88,7 @@ const ExamPayment = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      console.log('In finally block, setting loading to false');
       setLoading(false);
     }
     //localStorage.setItem('isProfileComplete', isProfileComplete);
@@ -105,7 +107,7 @@ const ExamPayment = () => {
           <h1 className="text-gray-800">Exam Payment</h1>
         </div>
         {loading ? (
-          <Loader />
+          <LoaderSkeleton />
         ) : (
           <div className="md:flex md:justify-between">
             <div className=" md:w-1/3 w-full md:flex-col md:p-5">
@@ -201,12 +203,20 @@ const ExamPayment = () => {
                   ):
               
                 (
-                  <button
-                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
-                    onClick={handlePayment}
-                  >
-                    Payment Done!
-                  </button>
+                 
+                    <div>
+                        {loading === true ? (
+                            <LoadingText />
+                        ) : (
+                            <button
+                                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded mt-4 block mx-auto"
+                                onClick={handlePayment}
+                            >
+                                Payment Done!
+                            </button>
+                        )}
+                    </div>
+              
                 )
                 
                 
