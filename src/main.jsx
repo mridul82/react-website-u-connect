@@ -16,6 +16,7 @@ import Service from './components/Pages/Service.jsx';
 import Tutors from './components/Pages/Tutors.jsx';
 
 import Exam from './components/Exam.jsx';
+import ExamSubmit from './components/ExamSubmit.jsx';
 import StudentProfileForm from './components/Forms/StudentProfileForm.jsx';
 import TeacherProfileForm from './components/Forms/TeacherProfileForm.jsx';
 import BoardTestSeries from './components/Pages/BoardTestSeries.jsx';
@@ -105,6 +106,10 @@ element: <Profile />
     path: '/exam',
     element: <Exam />,
  },
+ {
+  path: '/exam-submit',
+  element: <ExamSubmit />
+ }
 ]);
 
 

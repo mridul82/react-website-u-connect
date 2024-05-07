@@ -19,6 +19,7 @@ const ExamPayment = () => {
     const getPayemntStatus = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
+        console.log(user);
         const response = await axios.get(
           `${API_CONFIG.BASE_URL}/api/exam-payment-status/${user.id}`,
           {
@@ -30,7 +31,7 @@ const ExamPayment = () => {
         );
 
         if (response.status === 200) {
-         // console.log(response.data.data["exam"]["payment_status"]);
+         console.log(response.data.data["exam"]["payment_status"]);
           //console.log(response.data.data["exam"][0]["payment"]);
           const storedPaymentStatus = localStorage.getItem("paymentStatus");
           
@@ -50,7 +51,7 @@ const ExamPayment = () => {
     };
 
     getPayemntStatus();
-    //  const storedPaymentStatus = localStorage.getItem("paymentStatus");
+     const storedPaymentStatus = localStorage.getItem("paymentStatus");
     //   console.log(storedPaymentStatus);
     //   if (storedPaymentStatus === "true") {
     //     setPayment(true);
@@ -132,7 +133,7 @@ const ExamPayment = () => {
                 <p
                   style={{ fontSize: "12px", fontWeight: "bold", color: "red" }}
                 >
-                  *Once the paymnet is done click on 'Payment Done' button to
+                  *Once the payment is done click on 'Payment Done' button to
                   confirm payment
                 </p>
                 

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ExamInstruction from './ExamInstruction';
 import ExamPaper from './ExamPaper';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import API_CONFIG from '../Config/apiLink';
 
 
@@ -12,15 +12,19 @@ const Exam = () => {
   const location = useLocation();
  const examId = location.state?.examId; 
 
+ const navigate = useNavigate();
+
 
    console.log('Exam ID:', examId);
    // const [examInstructions, setExamInstructions] = useState('');
   const [examTimer, setExamTimer] = useState(0);
   const [examStarted, setExamStarted] = useState(false);
   const [pdfUrl, setPdfUrl] = useState('');
+  const [startTime, setStartTime] = useState(null);
 
 
     const handleStartExam = async (id) => {
+      setStartTime(Date.now()); // Record the start time
         setExamStarted(true);
        // console.log(`Starting exam with ID: ${id}`);
 
@@ -48,6 +52,26 @@ const Exam = () => {
          //console.log(pdfUrl);
       //   setPdfUrl(fakePdfUrl);
       };
+
+      const handleStopExam = (id) => {
+        if (!startTime) {
+          alert('Please start the exam first.');
+          return;
+        }
+        const confirmation = window.confirm('Are you sure you want to finsh the exam?');
+        if (confirmation) {
+          const endTime = Date.now();
+    const durationInMilliseconds = endTime - startTime;
+    const durationInMinutes = Math.floor(durationInMilliseconds / (1000 * 60));
+    const durationInSeconds = Math.floor((durationInMilliseconds / 1000) % 60);
+
+    // Format the duration into HH:MM:SS format
+    const formattedDuration = `${durationInMinutes}:${durationInSeconds < 10 ? '0' : ''}${durationInSeconds}`;
+    alert(`Exam duration: ${formattedDuration} minutes`);
+          // Navigate to the exam details page using the navigate function
+          navigate(`/exam-submit`, { state: {examId: examId, duration: formattedDuration } });
+        }
+      }
       
   return (
  
@@ -70,7 +94,9 @@ const Exam = () => {
     ) : (
       <div className="timer text-xl">
         Time Remaining: {examTimer} minutes
+        <button className="flex float-right bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleStopExam(examId)}>Finish Exam</button>
       </div>
+      
     )}
   </div>
 </div>
