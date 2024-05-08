@@ -8,7 +8,7 @@ const ExamInstruction = () => {
         <h2 className="text-xl font-semibold mb-2">READ THE INSTRUCTIONS CAREFULLY
 BEFORE clicking ON THE "Start
 Exam" BUTTON :</h2>
-        <ul className="list-disc ml-6">
+        <ul className="list-disc ml-6 text-lg">
         <li>1. Ensure you have your pen and
 paper ready before initiating
 the exam.</li>
