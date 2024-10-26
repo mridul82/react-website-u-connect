@@ -61,7 +61,7 @@ const ExamSummary = ({ showTimer, payment }) => {
           },
         })
         .then((response) => {
-          //console.log(response.data);
+          console.log(response.data);
           setLoading(false);
           setExamSummary(response.data["data"]);
           setTotalPrice(response.data["total_price"]);

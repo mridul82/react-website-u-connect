@@ -139,8 +139,8 @@ const Tutors = () => {
                   </div>
                   <div className="p-6">
                     <p className="text-xl font-semibold mb-2">
-                      Number of Students:{" "}
-                      <span className="text-blue-500">0</span>
+                      Number of Students: 
+                      <span className="text-blue-500">{profileData.profile.student_count}</span>
                     </p>
                   </div>
                 </div>

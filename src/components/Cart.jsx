@@ -31,7 +31,7 @@ const Cart = ({ cartExams }) => {
 
     const user = JSON.parse(localStorage.getItem("user"));
     //console.log(user);
-    //console.log({cartExams, totalPrice, user, selectedDate, selectedTime});
+    console.log({cartExams, totalPrice, user, selectedDate, selectedTime});
     const postData = {
       cartExams,
       totalPrice,
