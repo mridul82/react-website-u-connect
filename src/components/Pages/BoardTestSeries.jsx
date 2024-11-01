@@ -8,7 +8,7 @@ import Footer from "../Footer";
 import NavBar from "../NavBar";
 
 const BoardTestSeries = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(-1);
   const [examData, setExamData] = useState([]);
   const [filteredExams, setFilteredExams] = useState([]);
   const [examSubjects, setExamSubjects] = useState([]);
@@ -39,9 +39,14 @@ const BoardTestSeries = () => {
   const handleTabChange = (subject, index) => {
     setActiveTab(index);
 
-    // Filter exams by the selected subject
-    const filtered = examData.filter((exam) => exam.subjects === subject);
-    setFilteredExams(filtered);
+    if (subject === 'All') {
+      // If "All" is selected, show all exams
+      setFilteredExams(examData);
+    } else {
+      // Filter exams by the selected subject
+      const filtered = examData.filter((exam) => exam.subjects === subject);
+      setFilteredExams(filtered);
+    }
   };
 
   const getTests = async (token, user) => {
@@ -80,6 +85,16 @@ const BoardTestSeries = () => {
           <div className="container w-full">
             <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 justify-between">
               <div className="flex flex-wrap gap-3 mb-4">
+              <button
+  onClick={() => handleTabChange('All', -1)}
+  className={`py-2 px-4 border border-gray-300 rounded-lg transition-colors duration-200 ease-in-out ${
+    activeTab === -1
+      ? "bg-green-400 text-gray-800 font-semibold shadow-md"
+      : "bg-gray-100 text-gray-600 shadow-sm hover:bg-gray-200"
+  }`}
+>
+  All
+</button>
                 {examSubjects.map((subject, index) => (
                   <button
                     key={index}
