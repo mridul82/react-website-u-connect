@@ -7,6 +7,37 @@ import Cart from "../Cart";
 import Footer from "../Footer";
 import NavBar from "../NavBar";
 
+import * as fa from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const subjectIcons = {
+  English : fa.faUniversity,
+  Maths : fa.faCalculator,
+  Science : fa.faAtom,
+  SSc : fa.faPeopleGroup,
+  "Computer Science" : fa.faDesktop,
+  IT : fa.faComputer,
+  Economics : fa.faDollarSign,
+  IP : fa.faDesktop,
+  Chemistry : fa.faFlask,
+  Physics : fa.faGauge,
+  default : fa.faFileLines
+};
+
+const subjectStyles = {
+  English: "bg-blue-400 hover:bg-blue-500 text-white",
+  Maths: "bg-green-400 hover:bg-green-500 text-white",
+  Science: "bg-orange-400 hover:bg-orange-500 text-white",
+  SSc: "bg-purple-400 hover:bg-purple-500 text-white",
+  "Computer Science": "bg-red-400 hover:bg-red-500 text-white",
+  IT: "bg-teal-400 hover:bg-teal-500 text-white",
+  Economics: "bg-yellow-400 hover:bg-yellow-500 text-white",
+  IP: "bg-indigo-400 hover:bg-indigo-500 text-white",
+  Chemistry: "bg-pink-400 hover:bg-pink-500 text-white",
+  Physics: "bg-gray-400 hover:bg-gray-500 text-white",
+  default: "bg-gray-200 hover:bg-gray-300 text-gray-800",
+};
+
 const BoardTestSeries = () => {
   const [activeTab, setActiveTab] = useState(-1);
   const [examData, setExamData] = useState([]);
@@ -14,6 +45,7 @@ const BoardTestSeries = () => {
   const [examSubjects, setExamSubjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cartExams, setCartExams] = useState([]);
+  
 
   const handleAddTest = (test) => {
     if (window.innerWidth <= 768) {
@@ -93,6 +125,7 @@ const BoardTestSeries = () => {
       : "bg-gray-100 text-gray-600 shadow-sm hover:bg-gray-200"
   }`}
 >
+  <FontAwesomeIcon icon={subjectIcons['default']} className="mr-2" />
   All
 </button>
                 {examSubjects.map((subject, index) => (
@@ -101,10 +134,11 @@ const BoardTestSeries = () => {
                     onClick={() => handleTabChange(subject, index)}
                     className={`py-2 px-4 border border-gray-300 rounded-lg transition-colors duration-200 ease-in-out ${
                       activeTab === index
-                        ? "bg-green-400 text-gray-800 font-semibold shadow-md"
-                        : "bg-gray-100 text-gray-600 shadow-sm hover:bg-gray-200"
+                        ? `${subjectStyles[subject]} font-semibold shadow-md`
+                        : `${subjectStyles[subject]} shadow-sm`
                     }`}
                   >
+                    <FontAwesomeIcon icon={subjectIcons[subject]} className="mr-2" />
                     {subject}
                   </button>
                 ))}
