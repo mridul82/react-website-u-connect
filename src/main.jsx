@@ -10,6 +10,7 @@ import {
 import Login from './components/Login/Login.jsx';
 import SignUp from './components/Login/SignUp.jsx';
 import About from './components/Pages/About.jsx';
+import AllTutors from './components/Pages/AllTutors.jsx';
 import Contact from './components/Pages/Contact.jsx';
 import Profile from './components/Pages/Profile.jsx';
 import Service from './components/Pages/Service.jsx';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: '/about',
     element: <About />
+  },
+  {
+    path: '/all-tutors',
+    element: <AllTutors />
   },
   {
     path: '/service',

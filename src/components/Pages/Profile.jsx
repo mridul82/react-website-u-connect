@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Navbar from "../NavBar";
@@ -18,6 +18,8 @@ const Profile = () => {
   const [paymentExists, setPaymentExistes] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
+  const [coupons, setCoupons] = useState([]);
+  const [couponsLoading, setCouponsLoading] = useState(false);
 
   useEffect(() => {
     const getProfile = async () => {
@@ -64,6 +66,29 @@ const Profile = () => {
               setPaymentComplete(true);
               setPaymentStatus(false);
             }
+
+            // Fetch student coupons
+            setCouponsLoading(true);
+            try {
+              const couponsResponse = await axios.get(
+                `${API_CONFIG.BASE_URL}/api/student/coupons`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+              
+              if (couponsResponse.status === 200) {
+                setCoupons(couponsResponse.data.coupons || []);
+              }
+            } catch (couponError) {
+              console.error("Error fetching coupons:", couponError);
+            } finally {
+              setCouponsLoading(false);
+            }
+
             console.log(profileData);
             console.log(paymentExists);
             console.log(paymentStatus);
@@ -308,6 +333,53 @@ const Profile = () => {
                     </div>
                   </div>
                 </Link>
+              </div>
+
+              {/* Coupons Section */}
+              <div className="max-w-4xl mx-auto mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-r from-green-600 to-teal-600 p-4">
+                  <h3 className="text-2xl font-bold text-white">Your Available Coupons</h3>
+                </div>
+                <div className="p-6">
+                  {couponsLoading ? (
+                    <div className="flex justify-center items-center h-32">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+                    </div>
+                  ) : coupons.length > 0 ? (
+                    <div className="grid gap-4">
+                      {coupons.map(coupon => (
+                        <div key={coupon.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h4 className="text-lg font-semibold text-gray-900">{coupon.code}</h4>
+                              <p className="text-sm text-gray-600">Discount: {coupon.discount_percentage}%</p>
+                              <p className="text-xs text-gray-500">From: {coupon.teacher?.name || 'Admin'}</p>
+                            </div>
+                            <div className="text-right">
+                              <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                coupon.is_used 
+                                  ? 'bg-red-100 text-red-800' 
+                                  : 'bg-green-100 text-green-800'
+                              }`}>
+                                {coupon.is_used ? 'Used' : 'Available'}
+                              </span>
+                              <p className="text-xs text-gray-500 mt-1">
+                                {new Date(coupon.created_at).toLocaleDateString()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-500">
+                      <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                      </svg>
+                      <p className="mt-2">No coupons available yet.</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </>
           ) : (

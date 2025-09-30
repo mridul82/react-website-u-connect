@@ -45,9 +45,13 @@ const BoardTestSeries = () => {
   const [examSubjects, setExamSubjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cartExams, setCartExams] = useState([]);
+  //new
+  const [selectedExamId, setSelectedExamId] = useState(null);
+
   
 
   const handleAddTest = (test) => {
+    setSelectedExamId(test.id);
     if (window.innerWidth <= 768) {
       window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
     }
@@ -66,6 +70,10 @@ const BoardTestSeries = () => {
       window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
     }
     setCartExams((prevExams) => prevExams.filter((exam) => exam.id !== testId));
+
+    if (testId === selectedExamId) {
+      setSelectedExamId(null);
+    }
   };
 
   const handleTabChange = (subject, index) => {
@@ -92,6 +100,8 @@ const BoardTestSeries = () => {
       if (response.status === 200) {
         setExamData(response.data.exams);
         setExamSubjects([...new Set(response.data.exams.map((exam) => exam.subjects))]);
+        console.log("Exam subjects:", examSubjects);
+        console.log("Exam data:", response.data.exams);
         setIsLoading(false);
         setFilteredExams(response.data.exams); // Initially shows all exams
       }
@@ -146,8 +156,16 @@ const BoardTestSeries = () => {
             </div>
             <div className="md:flex md:justify-between">
               <div className="md:w-2/3 w-full md:flex-col md:p-5">
-                {filteredExams.map((exam) => (
-                  <div key={exam.id} className="bg-white p-4 mb-4 border border-gray-300 rounded-lg shadow-lg">
+              {filteredExams.map((exam) => {
+                const isBlurred = selectedExamId !== null && selectedExamId !== exam.id;
+
+                return (
+                  <div
+                    key={exam.id}
+                    className={`bg-white p-4 mb-4 border border-gray-300 rounded-lg shadow-lg transition duration-200 ease-in-out ${
+                      isBlurred ? 'blur-sm pointer-events-none opacity-60' : ''
+                    }`}
+                  >
                     <div className="flex items-center justify-between mb-2">
                       <h2 className="text-xl font-semibold mb-2">{exam.chapter_name}</h2>
                       <div className="flex flex-row items-end">
@@ -172,7 +190,10 @@ const BoardTestSeries = () => {
                       <span className="mr-2">{exam.test_series_name}</span>
                     </div>
                   </div>
-                ))}
+                );
+              })}
+
+
               </div>
               <Cart cartExams={cartExams} />
             </div>

@@ -1,0 +1,6 @@
+date 24-02-25
+1. cart blur other test when one is selected
+2. landing page correct email address
+3. apply coupon on 🛒
+4. add menu resource like free previous year qp classwise.
+5. connect to tutor button
